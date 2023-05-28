@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Open Source | Yao Xu</title>
+    <link>http://yaogh-code.github.io/tag/open-source/</link>
+      <atom:link href="http://yaogh-code.github.io/tag/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <description>Open Source</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 02 May 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://yaogh-code.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
+      <title>Open Source</title>
+      <link>http://yaogh-code.github.io/tag/open-source/</link>
+    </image>
+    
+    <item>
+      <title>An Operating System for Multicore RISC-V Systems Inspired by MIT xv6</title>
+      <link>http://yaogh-code.github.io/post/os/</link>
+      <pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://yaogh-code.github.io/post/os/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Preemptive User-Level Thread Library</title>
+      <link>http://yaogh-code.github.io/post/uthread/</link>
+      <pubDate>Mon, 01 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://yaogh-code.github.io/post/uthread/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Simulator of Virtual Memory and Process Scheduling</title>
+      <link>http://yaogh-code.github.io/post/vmp_sim/</link>
+      <pubDate>Sun, 30 Apr 2023 02:00:00 +0000</pubDate>
+      <guid>http://yaogh-code.github.io/post/vmp_sim/</guid>
+      <description>&lt;h2 id=&#34;repo-link&#34;&gt;Repo Link:&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/YaoGH-code/MemSim&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/YaoGH-code/MemSim&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A 5-stage pipeline MIPS CPU</title>
+      <link>http://yaogh-code.github.io/post/mcpu/</link>
+      <pubDate>Sun, 30 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>http://yaogh-code.github.io/post/mcpu/</guid>
+      <description>&lt;h2 id=&#34;repo-link&#34;&gt;Repo Link&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/YaoGH-code/mCPU&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/YaoGH-code/mCPU&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The MIPS (Microprocessor without Interlocked Pipeline Stages) architecture is a reduced instruction set computer (RISC) architecture that has played a significant role in the development of microprocessors.
+MIPS architecture features a clean and streamlined instruction set, emphasizing simplicity and efficiency. It focuses on optimizing the performance of frequently used instructions, making it suitable for a wide range of applications, including embedded systems, consumer electronics, networking equipment, and high-performance computing.&lt;/p&gt;
+&lt;p&gt;One of the distinguishing characteristics of MIPS is its fixed instruction format, where instructions are encoded in a 32-bit word. This fixed-format allows for efficient decoding and pipelining, enabling high-performance execution and reducing the complexity of the microarchitecture.
+MIPS processors employ a five-stage pipeline, including instruction fetch, instruction decode, execution, memory access, and write-back. This pipelining technique enables instructions to be processed concurrently, maximizing the overall throughput of the processor.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Image alt&#34; srcset=&#34;
+               /post/mcpu/pipeline_hudb3132c6a65292d7bcc467d1157af924_49776_93e1b4c91cf3ca7a05af67e3502d6d62.webp 400w,
+               /post/mcpu/pipeline_hudb3132c6a65292d7bcc467d1157af924_49776_6f0b1e1333cee2e1fc091fa2c2f7e0c9.webp 760w,
+               /post/mcpu/pipeline_hudb3132c6a65292d7bcc467d1157af924_49776_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;http://yaogh-code.github.io/post/mcpu/pipeline_hudb3132c6a65292d7bcc467d1157af924_49776_93e1b4c91cf3ca7a05af67e3502d6d62.webp&#34;
+               width=&#34;637&#34;
+               height=&#34;233&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;design&#34;&gt;Design&lt;/h2&gt;
+&lt;p&gt;The picture above shows the structure and components of this CPU. This CPU is composed of 5 stages, which are: Instruction Fetch(IF), Instruction Decode(ID), Execution(EXE), Memory(MEM) and Write Back(WB) stage.&lt;/p&gt;
+&lt;h3 id=&#34;if-stage&#34;&gt;IF Stage&lt;/h3&gt;
+&lt;p&gt;The Instruction Fetch stage consists of three components. Firstly, there is the program counter register, which holds the physical address of the next instruction in the instruction memory (represented here as a simplified memory structure). In each cycle, an adder increments the address by 4, and the resulting address is stored in the program counter for the next clock cycle. Simultaneously, the instruction memory, equipped with an input port and an output port, fetches an instruction using the address from the program counter. This fetched instruction is then stored in the IF/ID register during the same cycle.&lt;/p&gt;
+&lt;h3 id=&#34;id-stage&#34;&gt;ID Stage&lt;/h3&gt;
+&lt;p&gt;In the instruction decoding stage, we can clearly see the connection between the instruction set and the actual electronic circuit. First, the instruction will be decoded into following components:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;op code: basic operation of the instruction&lt;/li&gt;
+&lt;li&gt;rs: the first register source operand&lt;/li&gt;
+&lt;li&gt;rt: the second register source operand&lt;/li&gt;
+&lt;li&gt;rd: the register destination operand&lt;/li&gt;
+&lt;li&gt;shamt: shift amount to be used in shift instructions&lt;/li&gt;
+&lt;li&gt;funct code: function code&lt;/li&gt;
+&lt;li&gt;imm: immediate value&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Image alt&#34; srcset=&#34;
+               /post/mcpu/inst_hu15dfa85bd2086bc24f5770631c7f3697_1512767_6929362b380fbac60f299e210dda9ef7.webp 400w,
+               /post/mcpu/inst_hu15dfa85bd2086bc24f5770631c7f3697_1512767_1f333696f8a24b945d22e98f5d2b79da.webp 760w,
+               /post/mcpu/inst_hu15dfa85bd2086bc24f5770631c7f3697_1512767_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;http://yaogh-code.github.io/post/mcpu/inst_hu15dfa85bd2086bc24f5770631c7f3697_1512767_6929362b380fbac60f299e210dda9ef7.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;466&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Combining the Op code (bits 31-26) and funct code (bits 5-0) in MIPS instructions enables the hardware to determine the current instruction and its corresponding function. For example, instructions for basic arithmetic operation(R-format) have the same op code 0x0 but
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Image alt&#34; srcset=&#34;
+               /post/mcpu/format_hu05f80807f171e7fa4052f186c7c56bbd_336070_9a02269c4b175473d707fbddc06246b3.webp 400w,
+               /post/mcpu/format_hu05f80807f171e7fa4052f186c7c56bbd_336070_a9cdcd147be056fb04ed6476171de7c4.webp 760w,
+               /post/mcpu/format_hu05f80807f171e7fa4052f186c7c56bbd_336070_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;http://yaogh-code.github.io/post/mcpu/format_hu05f80807f171e7fa4052f186c7c56bbd_336070_9a02269c4b175473d707fbddc06246b3.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;117&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+with a different funct code. So, Op code and funct code combined will be provided to the control unit for generating control signals for later stages. These control signals will be covered later.&lt;/p&gt;
+&lt;p&gt;There is also a MUX in the MIPS architecture that utilizes the control signal &amp;ldquo;regrt&amp;rdquo; to select either the &amp;ldquo;rd&amp;rdquo; or &amp;ldquo;rt&amp;rdquo; register. The selected signal, along with the data to be written back to the register file, is then passed back to the ID stage. This MUX serves the purpose of determining the appropriate destination for the write-back operation. For instance, instructions with an opcode of 0 will select the &amp;ldquo;rd&amp;rdquo; register as the destination. On the other hand, for the LW (Load Word) instruction, the data retrieved from the data memory during the MEM stage will be written back to the register specified by the &amp;ldquo;rt&amp;rdquo; register. Therefore, the MUX helps decide which part of the instruction contains the desired destination for the write-back operation.&lt;/p&gt;
+&lt;p&gt;The signals &amp;ldquo;rs&amp;rdquo; and &amp;ldquo;rt&amp;rdquo; are used to access the register file and read the data stored in registers &amp;ldquo;rs&amp;rdquo; and &amp;ldquo;rt&amp;rdquo; simultaneously through the &amp;ldquo;qa&amp;rdquo; and &amp;ldquo;qb&amp;rdquo; ports. Additionally, the immediate value (imm) is sign extended and passed to the ALU for computation. This computation takes place during the EXE stage, where the ALU performs operations using the immediate value and other relevant data.&lt;/p&gt;
+&lt;p&gt;Then, let&amp;rsquo;s look at the control signals generated by the control unit:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;wreg: A write back to register will happen in the lifecycle of the current instruction&lt;/li&gt;
+&lt;li&gt;m2reg: A write back to register with data in memory will happen in the lifecycle of the current instruction&lt;/li&gt;
+&lt;li&gt;wmem: A write to memory will happen in the lifecycle of the current instruction&lt;/li&gt;
+&lt;li&gt;aluc: ALU operation mode ex. if aluc==b0010, then ALU_out &amp;lt;= ALU_a + ALU_b;&lt;/li&gt;
+&lt;li&gt;aluimm: A immediate value is needed by the ALU to finish this operation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;exe-stage&#34;&gt;EXE Stage&lt;/h3&gt;
+&lt;p&gt;In the EXE (Execute) stage, two signals are employed to control the ALU&amp;rsquo;s input sources and operation mode. Firstly, the &amp;ldquo;ealuc&amp;rdquo; signal is utilized to select the desired operation mode for the ALU. For instance, a value of &amp;ldquo;b0010&amp;rdquo; would indicate that the ALU should perform an addition operation on its two input numbers.&lt;/p&gt;
+&lt;p&gt;Secondly, the &amp;ldquo;ealuimm&amp;rdquo; signal determines the source of the input port &amp;ldquo;b&amp;rdquo; of the ALU. This is necessary because the number on port &amp;ldquo;b&amp;rdquo; can either come from the register file or be an extended immediate value. The &amp;ldquo;ealuimm&amp;rdquo; signal helps in determining whether the value on port &amp;ldquo;b&amp;rdquo; should be fetched from the register file or be the extended immediate value.&lt;/p&gt;
+&lt;h3 id=&#34;mem-stage&#34;&gt;MEM Stage&lt;/h3&gt;
+&lt;p&gt;During the MEM (Memory) stage, the &amp;ldquo;mwmem&amp;rdquo; signal is employed to determine whether the current instruction requires writing to the data memory or not. If the &amp;ldquo;mwmem&amp;rdquo; signal is set to indicate a write operation, the value from input port &amp;ldquo;a&amp;rdquo; will be written to the memory address specified by the value on input port &amp;ldquo;di&amp;rdquo;. On the other hand, if the &amp;ldquo;mwmem&amp;rdquo; signal indicates a read operation, the word at the memory address specified by the value on input port &amp;ldquo;di&amp;rdquo; will be retrieved and passed to the output port of the data memory. The &amp;ldquo;mwmem&amp;rdquo; signal thus controls the write or read operation on the data memory based on the instruction&amp;rsquo;s requirements.&lt;/p&gt;
+&lt;h3 id=&#34;wb-stage&#34;&gt;WB Stage&lt;/h3&gt;
+&lt;p&gt;In the final stage of the MIPS pipeline, the &amp;ldquo;wm2reg&amp;rdquo; (also referred to as &amp;ldquo;em2reg&amp;rdquo;) signal is employed as a selector for a MUX. This MUX determines whether the result obtained from the ALU computation or the data recently read from the data memory during the MEM stage will be chosen for writing back to the register file. The &amp;ldquo;wm2reg&amp;rdquo; signal serves as the control signal for this MUX, enabling the selection of the appropriate data to be written back based on the pipeline stage&amp;rsquo;s requirements.&lt;/p&gt;
+&lt;h2 id=&#34;testing&#34;&gt;Testing&lt;/h2&gt;
+&lt;p&gt;RTL design:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Image alt&#34; srcset=&#34;
+               /post/mcpu/RTL_hu065ead26b1d81c746475df4a32486d4a_25121_7d428c2d05928696796cefbc52f90ac6.webp 400w,
+               /post/mcpu/RTL_hu065ead26b1d81c746475df4a32486d4a_25121_559f22455183e76c554b3ac0f4530197.webp 760w,
+               /post/mcpu/RTL_hu065ead26b1d81c746475df4a32486d4a_25121_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;http://yaogh-code.github.io/post/mcpu/RTL_hu065ead26b1d81c746475df4a32486d4a_25121_7d428c2d05928696796cefbc52f90ac6.webp&#34;
+               width=&#34;695&#34;
+               height=&#34;365&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Output waveform of executing following instructions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;32&amp;rsquo;b10001100001000100000000000000000; -&amp;gt; lw $2, 00($1)&lt;/li&gt;
+&lt;li&gt;32&amp;rsquo;b10001100001000110000000000000100; -&amp;gt; lw $3, 04($1)&lt;/li&gt;
+&lt;li&gt;32&amp;rsquo;b10001100001001000000000000001000; -&amp;gt; lw $4, 08($1)&lt;/li&gt;
+&lt;li&gt;32&amp;rsquo;b10001100001001010000000000001100; -&amp;gt; lw $5, 12($1)&lt;/li&gt;
+&lt;li&gt;32&amp;rsquo;b00000000010010100011000000100000; -&amp;gt; add $6, $2, $10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Image alt&#34; srcset=&#34;
+               /post/mcpu/WF_hu65981b8fd6aec216c24366d4c8ea2367_150116_89fdd5cfc51f9cb44f46551d323c22c3.webp 400w,
+               /post/mcpu/WF_hu65981b8fd6aec216c24366d4c8ea2367_150116_f054340b8581abc60eb343afe825eed1.webp 760w,
+               /post/mcpu/WF_hu65981b8fd6aec216c24366d4c8ea2367_150116_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;http://yaogh-code.github.io/post/mcpu/WF_hu65981b8fd6aec216c24366d4c8ea2367_150116_89fdd5cfc51f9cb44f46551d323c22c3.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;418&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

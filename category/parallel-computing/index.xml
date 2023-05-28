@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Parallel Computing | Yao Xu</title>
+    <link>http://yaogh-code.github.io/category/parallel-computing/</link>
+      <atom:link href="http://yaogh-code.github.io/category/parallel-computing/index.xml" rel="self" type="application/rss+xml" />
+    <description>Parallel Computing</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 01 May 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://yaogh-code.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
+      <title>Parallel Computing</title>
+      <link>http://yaogh-code.github.io/category/parallel-computing/</link>
+    </image>
+    
+    <item>
+      <title>A Preemptive User-Level Thread Library</title>
+      <link>http://yaogh-code.github.io/post/uthread/</link>
+      <pubDate>Mon, 01 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://yaogh-code.github.io/post/uthread/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

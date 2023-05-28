@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C Programming | Yao Xu</title>
+    <link>http://yaogh-code.github.io/category/c-programming/</link>
+      <atom:link href="http://yaogh-code.github.io/category/c-programming/index.xml" rel="self" type="application/rss+xml" />
+    <description>C Programming</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 30 Apr 2023 02:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://yaogh-code.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
+      <title>C Programming</title>
+      <link>http://yaogh-code.github.io/category/c-programming/</link>
+    </image>
+    
+    <item>
+      <title>A Simulator of Virtual Memory and Process Scheduling</title>
+      <link>http://yaogh-code.github.io/post/vmp_sim/</link>
+      <pubDate>Sun, 30 Apr 2023 02:00:00 +0000</pubDate>
+      <guid>http://yaogh-code.github.io/post/vmp_sim/</guid>
+      <description>&lt;h2 id=&#34;repo-link&#34;&gt;Repo Link:&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/YaoGH-code/MemSim&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/YaoGH-code/MemSim&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

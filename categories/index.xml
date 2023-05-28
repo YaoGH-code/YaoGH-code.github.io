@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories | Yao Xu</title>
-    <link>http://YaoGH-code.github.io/categories/</link>
-      <atom:link href="http://YaoGH-code.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://yaogh-code.github.io/categories/</link>
+      <atom:link href="http://yaogh-code.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <description>Categories</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 13 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 02 May 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://YaoGH-code.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
+      <url>http://yaogh-code.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
       <title>Categories</title>
-      <link>http://YaoGH-code.github.io/categories/</link>
+      <link>http://yaogh-code.github.io/categories/</link>
     </image>
     
   </channel>
