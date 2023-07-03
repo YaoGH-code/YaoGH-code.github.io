@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- This site was created with Wowchemy. https://www.wowchemy.com -->
-<!-- Last Published: June 10, 2023 --><html lang="en-us" >
+<!-- Last Published: July 2, 2023 --><html lang="en-us" >
 
 
 <head>
@@ -591,7 +591,7 @@
           
 
           <li class="nav-item">
-            <a class="nav-link " href="/#accomplishments"><span>Courses</span></a>
+            <a class="nav-link " href="/#skills"><span>Skills</span></a>
           </li>
 
           
@@ -628,7 +628,7 @@
           
 
           <li class="nav-item">
-            <a class="nav-link " href="/#skills"><span>Skills</span></a>
+            <a class="nav-link " href="/#accomplishments"><span>Courses</span></a>
           </li>
 
           
@@ -875,9 +875,9 @@
   <div class="article-container">
 
     <div class="article-style">
-      <h2 id="repo-link">Repo Link</h2>
+      <h1 id="repo-link">Repo Link</h1>
 <p><a href="https://github.com/YaoGH-code/mCPU" target="_blank" rel="noopener">https://github.com/YaoGH-code/mCPU</a></p>
-<h2 id="introduction">Introduction</h2>
+<h1 id="introduction">Introduction</h1>
 <p>The MIPS (Microprocessor without Interlocked Pipeline Stages) architecture is a reduced instruction set computer (RISC) architecture that has played a significant role in the development of microprocessors.
 MIPS architecture features a clean and streamlined instruction set, emphasizing simplicity and efficiency. It focuses on optimizing the performance of frequently used instructions, making it suitable for a wide range of applications, including embedded systems, consumer electronics, networking equipment, and high-performance computing.</p>
 <p>One of the distinguishing characteristics of MIPS is its fixed instruction format, where instructions are encoded in a 32-bit word. This fixed-format allows for efficient decoding and pipelining, enabling high-performance execution and reducing the complexity of the microarchitecture.
@@ -910,7 +910,7 @@ MIPS processors employ a five-stage pipeline, including instruction fetch, instr
                loading="lazy" data-zoomable /></div>
   </div></figure>
 </p>
-<h2 id="design">Design</h2>
+<h1 id="design">Design</h1>
 <p>The picture above shows the structure and components of this CPU. This CPU is composed of 5 stages, which are: Instruction Fetch(IF), Instruction Decode(ID), Execution(EXE), Memory(MEM) and Write Back(WB) stage.</p>
 <h3 id="if-stage">IF Stage</h3>
 <p>The Instruction Fetch stage consists of three components. Firstly, there is the program counter register, which holds the physical address of the next instruction in the instruction memory (represented here as a simplified memory structure). In each cycle, an adder increments the address by 4, and the resulting address is stored in the program counter for the next clock cycle. Simultaneously, the instruction memory, equipped with an input port and an output port, fetches an instruction using the address from the program counter. This fetched instruction is then stored in the IF/ID register during the same cycle.</p>
@@ -1000,7 +1000,7 @@ with a different funct code. So, Op code and funct code combined will be provide
 <p>During the MEM (Memory) stage, the &ldquo;mwmem&rdquo; signal is employed to determine whether the current instruction requires writing to the data memory or not. If the &ldquo;mwmem&rdquo; signal is set to indicate a write operation, the value from input port &ldquo;a&rdquo; will be written to the memory address specified by the value on input port &ldquo;di&rdquo;. On the other hand, if the &ldquo;mwmem&rdquo; signal indicates a read operation, the word at the memory address specified by the value on input port &ldquo;di&rdquo; will be retrieved and passed to the output port of the data memory. The &ldquo;mwmem&rdquo; signal thus controls the write or read operation on the data memory based on the instruction&rsquo;s requirements.</p>
 <h3 id="wb-stage">WB Stage</h3>
 <p>In the final stage of the MIPS pipeline, the &ldquo;wm2reg&rdquo; (also referred to as &ldquo;em2reg&rdquo;) signal is employed as a selector for a MUX. This MUX determines whether the result obtained from the ALU computation or the data recently read from the data memory during the MEM stage will be chosen for writing back to the register file. The &ldquo;wm2reg&rdquo; signal serves as the control signal for this MUX, enabling the selection of the appropriate data to be written back based on the pipeline stage&rsquo;s requirements.</p>
-<h2 id="testing">Testing</h2>
+<h1 id="testing">Testing</h1>
 <p>RTL design:
 
 
