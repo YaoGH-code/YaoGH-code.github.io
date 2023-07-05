@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- This site was created with Wowchemy. https://www.wowchemy.com -->
-<!-- Last Published: July 2, 2023 --><html lang="en-us" >
+<!-- Last Published: July 5, 2023 --><html lang="en-us" >
 
 
 <head>
@@ -861,8 +861,8 @@
   <div class="article-container">
 
     <div class="article-style">
-      <!-- # Repo Link
-https://github.com/YaoGH-code/uthread -->
+      <h1 id="repo-link">Repo Link</h1>
+<p><a href="https://github.com/YaoGH-code/uthread" target="_blank" rel="noopener">https://github.com/YaoGH-code/uthread</a></p>
 <h1 id="overview">Overview</h1>
 <p>This project aims to provide a robust preemptive user-level thread library that simplifies the creation and management of user-level threads. By utilizing interfaces such as &ldquo;uthread_create&rdquo; and &ldquo;uthread_join,&rdquo; users familiar with POSIX threads can easily develop programs with user-level parallelism. The context of user-level threads in this project is implemented through a combination of our custom &ldquo;uthread&rdquo; data structure and the &ldquo;ucontext&rdquo; functionality provided by POSIX. Additionally, a lock-free data structure is employed to maintain each worker thread efficiently. The scheduling of user threads relies heavily on signals in this project. When a signal arrives, it indicates the start of the next scheduling round for each worker thread. The stack prepared by the kernel for the signal handler is crucial for smooth context switching. To ensure thread safety at the user level, interfaces such as &ldquo;umalloc,&rdquo; &ldquo;uprintf,&rdquo; and &ldquo;uthread_mutex_lock&rdquo; are provided. These interfaces facilitate safe memory allocation, printing, and mutual exclusion. This thread library is compatible with machines running MacOS or Linux with x86 architecture CPUs. Extensive testing has been conducted to verify the correctness and scalability of the system.</p>
 <h1 id="background">Background</h1>

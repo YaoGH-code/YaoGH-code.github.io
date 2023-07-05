@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- This site was created with Wowchemy. https://www.wowchemy.com -->
-<!-- Last Published: July 2, 2023 --><html lang="en-us" >
+<!-- Last Published: July 5, 2023 --><html lang="en-us" >
 
 
 <head>
@@ -829,7 +829,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    0 min read
+    19 min read
   </span>
   
 
@@ -861,752 +861,968 @@
   <div class="article-container">
 
     <div class="article-style">
-      <!-- ```python
-import libr
-print('hello')
-``` -->
-<!-- 
-## 1. Two Sum
-Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.
-```C++
-/* 
-Solution: Loop through all elements in the nums array. 
-If the number we want is in the hash map, then we return 
-the val(index) of the key(target-nums[i]) and the current 
-index. Otherwise, we add that key-val into the hash map. 
-Finally, there is no such number in the array, return 
-empty array. 
-*/
-class Solution {
-public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int,int> M;
-        for(int i=0; i<nums.size(); i++){
-            if (M.count(target-nums[i])) 
-                return {i, M[target-nums[i]]};
-            else M[nums[i]] = i;
-        }
-        return {};
-    }
-};
-```
-
-## 2. Add Two Numbers
-You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list. You may assume the two numbers do not contain any leading zero, except the number 0 itself.
-ex:&nbsp;
-2->4->3
-&nbsp;
-5->6->4
-&nbsp;
-7->0->8
-&nbsp;
-```C++
-/*
-Solution: We have two linked lists for two numbers. We loop through 
-two linked lists in the while loop and compute a temp sum for each 
-digit (also include the carry) and add new node which representing a
-digit in the new number to the output linked list. Also, updates the 
-carry for the next iteration.
-*/
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
-class Solution {
-public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode* dummy_head = new ListNode(-1);
-        ListNode* current = dummy_head;
-        int carry=0;
-        while(l1 || l2 || carry){
-            int sum=0;
-            if(l1){
-                sum += l1->val;
-                l1 = l1->next;
-            }
-            if(l2){
-                sum += l2->val;
-                l2 = l2->next;
-            }
-            sum += carry;
-            ListNode* node = new ListNode(sum%10);
-            carry = sum/10;
-            current->next = node;
-            current = current->next;
-        }
-        return dummy_head->next;
-    }
-};
-```
-
-## 3. Longest Substring Without Repeating Characters
-Given a string s, find the length of the longest substring without repeating characters.
-```C++
-/*
-Solution: The key point is to correctly kepp track of the left pointer.
-If we do not use max(left, M[s[i]]+1), we might cover a string with 
-repeated char that we have identiftied before (ex. abba) which is wrong 
-so we cannot let left pointer goes backward to cover substring with 
-potential repeated char.
-*/
-//we cannot move the left back
-//abba
-class Solution {
-public:
-    int lengthOfLongestSubstring(string s) {
-        if (!s.size()) return 0;
-        unordered_map<char, int> m;
-        int max_len = 1;
-        int left = 0;
-        for (int i=0; i<s.length(); i++){
-            if (m.count(s[i])){
-                left = max(left, m[s[i]]+1);
-            }
-            m[s[i]] = i;
-            max_len = max(max_len, i-left+1);
-        }
-        return max_len;
-    }
-};
-```
-
-
-## 5. Longest Palindromic Substring
-Given a string s, return the longest palindromic substring in s.
-```C++
-/*
-Solution: helper function: expand from a "pivot" to both sides and try
-to find the longest palindromic substring.
-There are two cases: substring with odd number of chars and substring
-with even number of chars. If the new substring is longer, update the 
-starting point and length.
-*/
-class Solution {
-public:
-    int helper(int l, int r, string s){
-        while(l>=0 && r<s.length() && s[l]==s[r]){
-            l--;
-            r++;
-        }
-        return r-l-1;
-    }
-    
-    string longestPalindrome(string s) {
-        int n=s.length();
-        int len=0;
-        int start=0;
-        for (int i=0; i<n; i++){
-            int cur = max(helper(i,i,s), helper(i,i+1,s));
-            if (cur>len){
-                len=cur;
-                start = i-(len-1)/2;
-            }
-        }
-        return s.substr(start,len); 
-    }
-};
-```
-
-## 6. Zigzag Conversion
-The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+      <h2 id="1-two-sum">1. Two Sum</h2>
+<p>Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cm">/* 
+</span></span></span><span class="line"><span class="cl"><span class="cm">Solution: Loop through all elements in the nums array. 
+</span></span></span><span class="line"><span class="cl"><span class="cm">If the number we want is in the hash map, then we return 
+</span></span></span><span class="line"><span class="cl"><span class="cm">the val(index) of the key(target-nums[i]) and the current 
+</span></span></span><span class="line"><span class="cl"><span class="cm">index. Otherwise, we add that key-val into the hash map. 
+</span></span></span><span class="line"><span class="cl"><span class="cm">Finally, there is no such number in the array, return 
+</span></span></span><span class="line"><span class="cl"><span class="cm">empty array. 
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">twoSum</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">M</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">M</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">target</span><span class="o">-</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> 
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">,</span> <span class="n">M</span><span class="p">[</span><span class="n">target</span><span class="o">-</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]]};</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">M</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="2-add-two-numbers">2. Add Two Numbers</h2>
+<p>You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list. You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+ex: 
+2-&gt;4-&gt;3
+ 
+5-&gt;6-&gt;4
+ 
+7-&gt;0-&gt;8
+ </p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">Solution: We have two linked lists for two numbers. We loop through 
+</span></span></span><span class="line"><span class="cl"><span class="cm">two linked lists in the while loop and compute a temp sum for each 
+</span></span></span><span class="line"><span class="cl"><span class="cm">digit (also include the carry) and add new node which representing a
+</span></span></span><span class="line"><span class="cl"><span class="cm">digit in the new number to the output linked list. Also, updates the 
+</span></span></span><span class="line"><span class="cl"><span class="cm">carry for the next iteration.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for singly-linked list.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct ListNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode *next;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode() : val(0), next(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span><span class="o">*</span> <span class="n">addTwoNumbers</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">l1</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">l2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span><span class="o">*</span> <span class="n">dummy_head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span><span class="o">*</span> <span class="n">current</span> <span class="o">=</span> <span class="n">dummy_head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">carry</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">l1</span> <span class="o">||</span> <span class="n">l2</span> <span class="o">||</span> <span class="n">carry</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">l1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sum</span> <span class="o">+=</span> <span class="n">l1</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">l2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sum</span> <span class="o">+=</span> <span class="n">l2</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sum</span> <span class="o">+=</span> <span class="n">carry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ListNode</span><span class="o">*</span> <span class="n">node</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">sum</span><span class="o">%</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">carry</span> <span class="o">=</span> <span class="n">sum</span><span class="o">/</span><span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">dummy_head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="3-longest-substring-without-repeating-characters">3. Longest Substring Without Repeating Characters</h2>
+<p>Given a string s, find the length of the longest substring without repeating characters.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">Solution: The key point is to correctly kepp track of the left pointer.
+</span></span></span><span class="line"><span class="cl"><span class="cm">If we do not use max(left, M[s[i]]+1), we might cover a string with 
+</span></span></span><span class="line"><span class="cl"><span class="cm">repeated char that we have identiftied before (ex. abba) which is wrong 
+</span></span></span><span class="line"><span class="cl"><span class="cm">so we cannot let left pointer goes backward to cover substring with 
+</span></span></span><span class="line"><span class="cl"><span class="cm">potential repeated char.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//we cannot move the left back
+</span></span></span><span class="line"><span class="cl"><span class="c1">//abba
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">lengthOfLongestSubstring</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">max_len</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">left</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">m</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">max_len</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">max_len</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="5-longest-palindromic-substring">5. Longest Palindromic Substring</h2>
+<p>Given a string s, return the longest palindromic substring in s.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">Solution: helper function: expand from a &#34;pivot&#34; to both sides and try
+</span></span></span><span class="line"><span class="cl"><span class="cm">to find the longest palindromic substring.
+</span></span></span><span class="line"><span class="cl"><span class="cm">There are two cases: substring with odd number of chars and substring
+</span></span></span><span class="line"><span class="cl"><span class="cm">with even number of chars. If the new substring is longer, update the 
+</span></span></span><span class="line"><span class="cl"><span class="cm">starting point and length.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">helper</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="n">string</span> <span class="n">s</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">l</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">r</span><span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">==</span><span class="n">s</span><span class="p">[</span><span class="n">r</span><span class="p">]){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">l</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">r</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="nf">longestPalindrome</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">n</span><span class="o">=</span><span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">helper</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">s</span><span class="p">),</span> <span class="n">helper</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">s</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">cur</span><span class="o">&gt;</span><span class="n">len</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">len</span><span class="o">=</span><span class="n">cur</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">start</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="p">(</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">len</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="6-zigzag-conversion">6. Zigzag Conversion</h2>
+<p>The string &ldquo;PAYPALISHIRING&rdquo; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
 P   A   H   N
 A P L S I I G
 Y   I   R
-And then read line by line: "PAHNAPLSIIGYIR"
-```C++
-/*
-Solution: Prepare n strings and fill them with different levels. For example, level 0,1,2...
-if we reached the lowest or highest level, change the direction. Finally, put all level of 
-strings together.
-*/
-class Solution {
-public:
-    string convert(string s, int n) {
-        if(n==1) return s;
-        vector<string> v(n);
-        int level = 0;
-        int dir = 1;
-        string res;
-
-        for (int i=0; i<s.length(); i++){
-            v[level]+=s[i];
-
-            if (dir) level++;
-            else level--;
-
-            if (level == n-1) dir=0;
-            if (level == 0) dir=1;
-        }
-        for (string s:v) res+=s;
-        return res;
-    }
-};
-```
-
-## 7. Reverse Integer
-Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
-```C++
-class Solution {
-public:
-    int reverse(int x) {
-        long long res = 0;
-        while(x) {
-            res = res*10 + x%10;
-            x /= 10;
-        }
-        return (res<INT_MIN || res>INT_MAX) ? 0 : res;
-    }
-};
-```
-
-## 9. Palindrome Number
-Given an integer x, return true if x is a palindrome, and false otherwise.
-```C++
-class Solution {
-public:
-    bool isPalindrome(int x) {
-        if( x<0 || ( x % 10==0 && x!=0))
-            return false;
-        int revno = 0;
-        while(x>revno){ // when x<revno we processed half of digits, so we stop
-            revno=revno*10 + x%10;
-            x=x/10;
-        }
-        return x==revno || x==revno/10; //1221 or 12321
-    }
-};
-```
-
-
-
-
-## 11. Container With Most Water
-```C++
-//Author: Yao Xu
-/*
-We use two pointers to calculate the area with the smaller height.
-Then if we reduce or increase the pointer with the smaller value 
-and keep track the max value of water.
-*/
-
-class Solution {
-public:
-    int maxArea(vector<int>& height) {
-        int l=0; 
-        int r=height.size()-1;
-        int res=0;
-        while(l<r){
-            res = max(res, min(height[l], height[r])*(r-l));
-            if (height[l]<height[r]) l++;
-            else r--;
-        }
-        return res;
-    }
-};
-```
-
-## 12. Integer to Roman
-```C++
-//Author: Yao Xu
-/*
-The idea here is to loop through the vector reversely. 
-For each element in the vector, if the num we have is 
-larger than its value the we subtract that value from 
-the input until the num is smaller than the current 
-element in the vector.
-*/
-class Solution {
-public:
-    string intToRoman(int num) {
-            vector<pair<string,int>> v;
-            v.push_back(make_pair("I",1));
-            v.push_back(make_pair("IV",4));
-            v.push_back(make_pair("V",5));
-            v.push_back(make_pair("IX",9));
-            v.push_back(make_pair("X",10));
-            v.push_back(make_pair("XL",40));
-            v.push_back(make_pair("L",50));
-            v.push_back(make_pair("XC",90));
-            v.push_back(make_pair("C",100));
-            v.push_back(make_pair("CD",400));
-            v.push_back(make_pair("D",500));
-            v.push_back(make_pair("CM",900));
-            v.push_back(make_pair("M",1000));
-
-            string ans="";
-            for(int i=v.size()-1; i>=0; i--){
-                while(num >= v[i].second){
-                    num-=v[i].second;
-                    ans += v[i].first;
-                }
-            }
-            return ans;
-        }
-};
-```
-
-## 13. Roman to Integer
-```C++
-// Author: Yao Xu
-/*
-The idea is we loop through every char in the string 
-and add that value to our final result but we have 
-to check if the current is larger than the old one, 
-if the old one is smaller than the current one we 
-have to subtract twice of the old value since we 
-have added that value to the result.
-*/
-class Solution {
-public:
-    int romanToInt(string s) {
-        map<char, int> nums = {{'M', 1000}, {'D', 500}, {'C', 100}, {'L', 50}, {'X', 10}, {'V', 5}, {'I', 1}};
-        int res=0;
-        int prev=0;
-        for (char c:s){
-            int cur = nums[c];
-            res += cur;
-            if (prev<cur) res -= 2* prev;
-            prev = cur;
-        }
-        return res;
-    }
-};
-```
-
-## 14. Longest Common Prefix
-Write a function to find the longest common prefix string amongst an array of strings.
-If there is no common prefix, return an empty string "".
+And then read line by line: &ldquo;PAHNAPLSIIGYIR&rdquo;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">Solution: Prepare n strings and fill them with different levels. For example, level 0,1,2...
+</span></span></span><span class="line"><span class="cl"><span class="cm">if we reached the lowest or highest level, change the direction. Finally, put all level of 
+</span></span></span><span class="line"><span class="cl"><span class="cm">strings together.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">convert</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">dir</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">string</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">[</span><span class="n">level</span><span class="p">]</span><span class="o">+=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">dir</span><span class="p">)</span> <span class="n">level</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">level</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">level</span> <span class="o">==</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">dir</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">dir</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">string</span> <span class="nl">s</span><span class="p">:</span><span class="n">v</span><span class="p">)</span> <span class="n">res</span><span class="o">+=</span><span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="7-reverse-integer">7. Reverse Integer</h2>
+<p>Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">reverse</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">long</span> <span class="kt">long</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="n">x</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">x</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="n">res</span><span class="o">&lt;</span><span class="n">INT_MIN</span> <span class="o">||</span> <span class="n">res</span><span class="o">&gt;</span><span class="n">INT_MAX</span><span class="p">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="9-palindrome-number">9. Palindrome Number</h2>
+<p>Given an integer x, return true if x is a palindrome, and false otherwise.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">isPalindrome</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">||</span> <span class="p">(</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="o">==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="o">!=</span><span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">revno</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="n">revno</span><span class="p">){</span> <span class="c1">// when x&lt;revno we processed half of digits, so we stop
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">revno</span><span class="o">=</span><span class="n">revno</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="n">x</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">x</span><span class="o">==</span><span class="n">revno</span> <span class="o">||</span> <span class="n">x</span><span class="o">==</span><span class="n">revno</span><span class="o">/</span><span class="mi">10</span><span class="p">;</span> <span class="c1">//1221 or 12321
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="11-container-with-most-water">11. Container With Most Water</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">//Author: Yao Xu
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">We use two pointers to calculate the area with the smaller height.
+</span></span></span><span class="line"><span class="cl"><span class="cm">Then if we reduce or increase the pointer with the smaller value 
+</span></span></span><span class="line"><span class="cl"><span class="cm">and keep track the max value of water.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">maxArea</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">l</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">r</span><span class="o">=</span><span class="n">height</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">res</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">l</span><span class="o">&lt;</span><span class="n">r</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">min</span><span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">height</span><span class="p">[</span><span class="n">r</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">&lt;</span><span class="n">height</span><span class="p">[</span><span class="n">r</span><span class="p">])</span> <span class="n">l</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">r</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="12-integer-to-roman">12. Integer to Roman</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">//Author: Yao Xu
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">The idea here is to loop through the vector reversely. 
+</span></span></span><span class="line"><span class="cl"><span class="cm">For each element in the vector, if the num we have is 
+</span></span></span><span class="line"><span class="cl"><span class="cm">larger than its value the we subtract that value from 
+</span></span></span><span class="line"><span class="cl"><span class="cm">the input until the num is smaller than the current 
+</span></span></span><span class="line"><span class="cl"><span class="cm">element in the vector.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">intToRoman</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&#34;I&#34;</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&#34;IV&#34;</span><span class="p">,</span><span class="mi">4</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&#34;V&#34;</span><span class="p">,</span><span class="mi">5</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&#34;IX&#34;</span><span class="p">,</span><span class="mi">9</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&#34;X&#34;</span><span class="p">,</span><span class="mi">10</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&#34;XL&#34;</span><span class="p">,</span><span class="mi">40</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&#34;L&#34;</span><span class="p">,</span><span class="mi">50</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&#34;XC&#34;</span><span class="p">,</span><span class="mi">90</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&#34;C&#34;</span><span class="p">,</span><span class="mi">100</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&#34;CD&#34;</span><span class="p">,</span><span class="mi">400</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&#34;D&#34;</span><span class="p">,</span><span class="mi">500</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&#34;CM&#34;</span><span class="p">,</span><span class="mi">900</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">&#34;M&#34;</span><span class="p">,</span><span class="mi">1000</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">string</span> <span class="n">ans</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">while</span><span class="p">(</span><span class="n">num</span> <span class="o">&gt;=</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">num</span><span class="o">-=</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">ans</span> <span class="o">+=</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="13-roman-to-integer">13. Roman to Integer</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">// Author: Yao Xu
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">The idea is we loop through every char in the string 
+</span></span></span><span class="line"><span class="cl"><span class="cm">and add that value to our final result but we have 
+</span></span></span><span class="line"><span class="cl"><span class="cm">to check if the current is larger than the old one, 
+</span></span></span><span class="line"><span class="cl"><span class="cm">if the old one is smaller than the current one we 
+</span></span></span><span class="line"><span class="cl"><span class="cm">have to subtract twice of the old value since we 
+</span></span></span><span class="line"><span class="cl"><span class="cm">have added that value to the result.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">romanToInt</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">{{</span><span class="sc">&#39;M&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">},</span> <span class="p">{</span><span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">},</span> <span class="p">{</span><span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">},</span> <span class="p">{</span><span class="sc">&#39;L&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">},</span> <span class="p">{</span><span class="sc">&#39;X&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">},</span> <span class="p">{</span><span class="sc">&#39;V&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">},</span> <span class="p">{</span><span class="sc">&#39;I&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">}};</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">res</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">prev</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="nl">c</span><span class="p">:</span><span class="n">s</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">c</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span> <span class="o">+=</span> <span class="n">cur</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">prev</span><span class="o">&lt;</span><span class="n">cur</span><span class="p">)</span> <span class="n">res</span> <span class="o">-=</span> <span class="mi">2</span><span class="o">*</span> <span class="n">prev</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">prev</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="14-longest-common-prefix">14. Longest Common Prefix</h2>
+<p>Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string &ldquo;&rdquo;.
 Example 1:
-Input: strs = ["flower","flow","flight"]
-Output: "fl"
+Input: strs = [&ldquo;flower&rdquo;,&ldquo;flow&rdquo;,&ldquo;flight&rdquo;]
+Output: &ldquo;fl&rdquo;
 Example 2:
-Input: strs = ["dog","racecar","car"]
-Output: ""
-Explanation: There is no common prefix among the input strings.
-```C++
-// Author: Yao Xu
-/*
-The idea here is to use the first string as a standard and loop through all other strings to check 
-the longest prefix. And update the shortest prefix every time when we check a string.
-Finally, according to the length we can return the result prefix.
-*/
-class Solution {
-public:
-    string longestCommonPrefix(vector<string>& strs) {
-        int ref = strs[0].length();
-        for (int i=1; i<strs.size(); i++){
-            int temp=0;
-            while(temp<strs[0].length() && temp<strs[i].length() && strs[i][temp] == strs[0][temp]){
-                temp++;
-            }
-            ref = min(ref, temp);
-        }
-        return strs[0].substr(0,ref);
-    }
-};
-```
-
-
-
-
-## 15. 3Sum
-Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
-Notice that the solution set must not contain duplicate triplets.
-```C++
-//Author: Yao Xu
-/* The idea is to sort the array first. Then, loop through the array with variable i.
-if((i > 0) && nums[i]==nums[i-1]) continue; if current nums[i] and nums[i-1] we skip, 
-this is for avoiding duplicates. This is the first way to avoid duplicates.
-
-Then in the interval l-r, we check each possible sum. If the sum is 0, we add that to the
-final answer and do the avoding duplicates again by scanning the number in the interval.
-Then increment left and decrement right for the next iteratoraiton in the interval.
-*/
-class Solution {
-public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        if (!&nums || nums.size()<3) return {};
-        vector<vector<int>> res;
-
-        int i=0;
-        int left = 1;
-        int right = nums.size()-1;
-        sort(nums.begin(), nums.end());
-
-        for (int i=0; i<nums.size(); i++){
-            if (i > 0 && nums[i] == nums[i-1]) continue;
-            left = i+1;
-            right = nums.size()-1;
-            while(left<right){
-                int temp_sum = nums[left] + nums[right] + nums[i];
-                if (temp_sum<0) left++;
-                else if (temp_sum>0) right--;
-                else { 
-                    res.push_back({nums[left], nums[right], nums[i]});
-                    while(left<right && nums[left] == nums[left+1]) left++;
-                    while(left<right && nums[right] == nums[right-1]) right--;
-                    left++;
-                    right--;
-                }
-            }
-        }
-        return res;
-    }
-};
-```
-
-
-## 19. Remove Nth Node From End of List
-Given the head of a linked list, remove the nth node from the end of the list and return its head.
-```C++
-// Author: Yao Xu
-/*
-The idea is to go to the nth element from the head with the first pointer
-then using the second pointer to go through the linked list until the first
-pointer points to NULL.
-Now, the second points to the position we want, delete that node.
-return dummy.next
-*/
-
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
-class Solution {
-public:
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode *dummy = new ListNode(-1);
-        dummy->next = head;
-        ListNode* fast = dummy;
-        ListNode* slow = dummy;
-
-        for (int i=0; i<n; i++){
-            fast = fast->next;
-        }
-        while(fast->next){
-           fast = fast->next;
-           slow = slow->next; 
-        }
-        slow->next = slow->next->next;
-        return dummy->next;
-    }
-};
-```
-
-## 20. Valid Parentheses
-Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+Input: strs = [&ldquo;dog&rdquo;,&ldquo;racecar&rdquo;,&ldquo;car&rdquo;]
+Output: &quot;&quot;
+Explanation: There is no common prefix among the input strings.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">// Author: Yao Xu
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">The idea here is to use the first string as a standard and loop through all other strings to check 
+</span></span></span><span class="line"><span class="cl"><span class="cm">the longest prefix. And update the shortest prefix every time when we check a string.
+</span></span></span><span class="line"><span class="cl"><span class="cm">Finally, according to the length we can return the result prefix.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">longestCommonPrefix</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">strs</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">strs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">length</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">strs</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">temp</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span><span class="p">(</span><span class="n">temp</span><span class="o">&lt;</span><span class="n">strs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">length</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">temp</span><span class="o">&lt;</span><span class="n">strs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">length</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">strs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">temp</span><span class="p">]</span> <span class="o">==</span> <span class="n">strs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">temp</span><span class="p">]){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">temp</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ref</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">ref</span><span class="p">,</span> <span class="n">temp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">strs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ref</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="15-3sum">15. 3Sum</h2>
+<p>Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+Notice that the solution set must not contain duplicate triplets.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">//Author: Yao Xu
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/* The idea is to sort the array first. Then, loop through the array with variable i.
+</span></span></span><span class="line"><span class="cl"><span class="cm">if((i &gt; 0) &amp;&amp; nums[i]==nums[i-1]) continue; if current nums[i] and nums[i-1] we skip, 
+</span></span></span><span class="line"><span class="cl"><span class="cm">this is for avoiding duplicates. This is the first way to avoid duplicates.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">Then in the interval l-r, we check each possible sum. If the sum is 0, we add that to the
+</span></span></span><span class="line"><span class="cl"><span class="cm">final answer and do the avoding duplicates again by scanning the number in the interval.
+</span></span></span><span class="line"><span class="cl"><span class="cm">Then increment left and decrement right for the next iteratoraiton in the interval.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">threeSum</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!&amp;</span><span class="n">nums</span> <span class="o">||</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">)</span> <span class="k">return</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sort</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">right</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span><span class="p">(</span><span class="n">left</span><span class="o">&lt;</span><span class="n">right</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">temp_sum</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">temp_sum</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="n">left</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">temp_sum</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="n">right</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">                    <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]});</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">while</span><span class="p">(</span><span class="n">left</span><span class="o">&lt;</span><span class="n">right</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="n">left</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">while</span><span class="p">(</span><span class="n">left</span><span class="o">&lt;</span><span class="n">right</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="n">right</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">left</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">right</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="19-remove-nth-node-from-end-of-list">19. Remove Nth Node From End of List</h2>
+<p>Given the head of a linked list, remove the nth node from the end of the list and return its head.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">// Author: Yao Xu
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">The idea is to go to the nth element from the head with the first pointer
+</span></span></span><span class="line"><span class="cl"><span class="cm">then using the second pointer to go through the linked list until the first
+</span></span></span><span class="line"><span class="cl"><span class="cm">pointer points to NULL.
+</span></span></span><span class="line"><span class="cl"><span class="cm">Now, the second points to the position we want, delete that node.
+</span></span></span><span class="line"><span class="cl"><span class="cm">return dummy.next
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for singly-linked list.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct ListNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode *next;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode() : val(0), next(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span><span class="o">*</span> <span class="n">removeNthFromEnd</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="o">*</span><span class="n">dummy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dummy</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span><span class="o">*</span> <span class="n">fast</span> <span class="o">=</span> <span class="n">dummy</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span><span class="o">*</span> <span class="n">slow</span> <span class="o">=</span> <span class="n">dummy</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">           <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">           <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">dummy</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="20-valid-parentheses">20. Valid Parentheses</h2>
+<p>Given a string s containing just the characters &lsquo;(&rsquo;, &lsquo;)&rsquo;, &lsquo;{&rsquo;, &lsquo;}&rsquo;, &lsquo;[&rsquo; and &lsquo;]&rsquo;, determine if the input string is valid.
 An input string is valid if:
 Open brackets must be closed by the same type of brackets.
 Open brackets must be closed in the correct order.
-Every close bracket has a corresponding open bracket of the same type.
-
-```C++
-// Author: Yao Xu
-/*
-We are using stack to store the right half. We push the right half hwen we 
-find there is a left half. If we find the right half,we check the stack to see if there
-is a match or not. We may find there is a right half but the stack is empty, this means the
-right half should not be there.
-if the right do not matches the left half, this is wrong.
-OR if at the end the stack is not empty, then this is also wrong.
-*/
-
-class Solution {
-public:
-    bool isValid(string s) {
-        stack<char> stack;
-         
-        for (int i=0; i<s.length(); i++){
-            if (s[i] == '(') stack.push(')');
-            else if (s[i] == '{') stack.push('}');
-            else if (s[i] == '[') stack.push(']');
-
-            else{
-                if (stack.empty()) return false;
-                char top = stack.top();
-                stack.pop();
-                if (top != s[i]) return false;
-            }
-        }
-        if (!stack.empty()) return false;
-        return true;
-        
-    }
-};
-```
-
-## 21. Merge Two Sorted Lists
-```C++
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
-class Solution {
-public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        ListNode* head = new ListNode(-1);
-        ListNode* p = head;
-        while(list1 && list2){
-            if (list1->val > list2->val){
-                p->next = list2;
-                list2=list2->next;
-                p=p->next;
-            }else{
-                p->next = list1;
-                list1=list1->next;
-                p=p->next; 
-            }
-        }  
-        if(list1) p->next = list1;
-        if(list2) p->next = list2;
-        return head->next;
-    }
-};
-```
-
-
-## 22. Generate Parenthese
-Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
-
-Example 1:
+Every close bracket has a corresponding open bracket of the same type.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">// Author: Yao Xu
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">We are using stack to store the right half. We push the right half hwen we 
+</span></span></span><span class="line"><span class="cl"><span class="cm">find there is a left half. If we find the right half,we check the stack to see if there
+</span></span></span><span class="line"><span class="cl"><span class="cm">is a match or not. We may find there is a right half but the stack is empty, this means the
+</span></span></span><span class="line"><span class="cl"><span class="cm">right half should not be there.
+</span></span></span><span class="line"><span class="cl"><span class="cm">if the right do not matches the left half, this is wrong.
+</span></span></span><span class="line"><span class="cl"><span class="cm">OR if at the end the stack is not empty, then this is also wrong.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">isValid</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stack</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">stack</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">         
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span><span class="p">)</span> <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="sc">&#39;)&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;{&#39;</span><span class="p">)</span> <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="sc">&#39;}&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;[&#39;</span><span class="p">)</span> <span class="n">stack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="sc">&#39;]&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">char</span> <span class="n">top</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">top</span> <span class="o">!=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">stack</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="21-merge-two-sorted-lists">21. Merge Two Sorted Lists</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for singly-linked list.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct ListNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode *next;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode() : val(0), next(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span><span class="o">*</span> <span class="n">mergeTwoLists</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">list1</span><span class="p">,</span> <span class="n">ListNode</span><span class="o">*</span> <span class="n">list2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">list1</span> <span class="o">&amp;&amp;</span> <span class="n">list2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">list1</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&gt;</span> <span class="n">list2</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">list2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">list2</span><span class="o">=</span><span class="n">list2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">list1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">list1</span><span class="o">=</span><span class="n">list1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">list1</span><span class="p">)</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">list1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">list2</span><span class="p">)</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">list2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="22-generate-parenthese">22. Generate Parenthese</h2>
+<p>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.</p>
+<p>Example 1:
 Input: n = 3
-Output: ["((()))","(()())","(())()","()(())","()()()"]
-
-Example 2:
+Output: [&quot;((()))&quot;,&quot;(()())&quot;,&quot;(())()&quot;,&quot;()(())&quot;,&quot;()()()&quot;]</p>
+<p>Example 2:
 Input: n = 1
-Output: ["()"]
-```C++
-// Author: Yao Xu
-// Using recursion to solve this problem
-/*
-Using the idea of adding left side of the parentheses first and then
-the right side.
-We can add left first if left is not zero since we cannot add right side anyway
-if right is less than left means we havn't finished so we just add right side.
-if left == right means we finished one instance so we record the result and push back that
-to the vector.
-*/
-class Solution {
-public:
-    vector<string> V;
-    void helper(string current, int left, int right){
-        if (left==0 && right ==0){
-            V.push_back(current);
-            return;
-        }
-        if (left>0){
-            helper(current+"(",left-1,right);
-        }
-        if (right>left){
-            helper(current+")",left,right-1);
-        }
-    }
-    vector<string> generateParenthesis(int n) {
-        helper("",n,n);
-        return V;
-    }
-};
-```
-
-## 24. Swap Nodes in Pairs
-Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)
-```C++
-/**
- Solution: First make sure there are two more nodes after the 
- current node and swap those two nodes. Make sure store info about 
-the first node and the next node of the second node.
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
-class Solution {
-public:
-    ListNode* swapPairs(ListNode* head) {
-        if (head == NULL || head->next == NULL) 
-        return head;
-
-        ListNode* dummy = new ListNode(0);
-        dummy->next = head;
-        ListNode* current = dummy;
-
-        while(current->next && current->next->next){
-            ListNode* first = current->next;
-
-            current->next = first->next;
-            ListNode* sec_next = first->next->next;
-            current->next->next = first;
-            current->next->next->next = sec_next;
-            current=current->next->next;
-        }
-        return dummy->next;
-        
-    }
-};
-```
-
-## 26. Remove Duplicates from Sorted Array
-```C++
-class Solution {
-public:
-    int removeDuplicates(vector<int>& nums) {
-        int slow = 0;
-        int fast = 0;
-        while (fast < nums.size()){
-            if (nums[slow] == nums[fast]){
-                fast++;
-            } else {
-                slow++;
-                nums[slow] = nums[fast];
-                fast++;
-            }
-        }
-        return slow+1;
-    }
-};
-```
-
-## 27. Remove Element
-```C++
-class Solution {
-public:
-    int removeElement(vector<int>& nums, int val) {
-        int p=0;
-        for (auto i:nums){
-            if (i != val){
-                nums[p] = i;
-                p++;
-            }
-        }
-        return p; 
-    }
-};
-```
-
-## 28. Find the Index of the First Occurrence in a String
-```C++
-class Solution {
-public:
-    int strStr(string haystack, string needle) {
-        for (int i=0; i<haystack.size(); i++){
-            if ( needle.length()<=haystack.size()-i && haystack.substr(i, needle.length())==needle ){
-                return i;
-            }
-        }
-        return -1;
-    }
-};
-```
-
-
-## 94. Binary Tree Inorder Traversal
-```C++
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
-    public:  
-    vector<int> res;
-    void inorderhelp(TreeNode* root){
-        if(root == NULL) return;
-        inorderhelp(root->left);
-        res.push_back(root->val);
-        inorderhelp(root->right);
-    }  
-    vector<int> inorderTraversal(TreeNode* root) {
-        inorderhelp(root);
-        return res;
-    }
-};
-```
-
-## 144. Binary Tree Preorder Traversal
-```C++
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
-public:
-    vector<int> vec;
-    vector<int> preorderTraversal(TreeNode* root) {
-        if (!root) return {};
-        vec.push_back(root->val);
-        preorderTraversal(root->left);
-        
-        preorderTraversal(root->right);
-        return vec;
-        
-    }
-};
-```
-
-## 145. Binary Tree Postorder Traversal
-```C++
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
-public:
-    vector<int> T;
-    vector<int> postorderTraversal(TreeNode* root) {
-        if (!root) return {};
-        postorderTraversal(root->left);
-        postorderTraversal(root->right);
-        T.push_back(root->val);
-        return T;
-    }
-};
-```
-
-
- -->
-
+Output: [&quot;()&quot;]</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">// Author: Yao Xu
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Using recursion to solve this problem
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">Using the idea of adding left side of the parentheses first and then
+</span></span></span><span class="line"><span class="cl"><span class="cm">the right side.
+</span></span></span><span class="line"><span class="cl"><span class="cm">We can add left first if left is not zero since we cannot add right side anyway
+</span></span></span><span class="line"><span class="cl"><span class="cm">if right is less than left means we havn&#39;t finished so we just add right side.
+</span></span></span><span class="line"><span class="cl"><span class="cm">if left == right means we finished one instance so we record the result and push back that
+</span></span></span><span class="line"><span class="cl"><span class="cm">to the vector.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">V</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">helper</span><span class="p">(</span><span class="n">string</span> <span class="n">current</span><span class="p">,</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">left</span><span class="o">==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">right</span> <span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">V</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">current</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">left</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">helper</span><span class="p">(</span><span class="n">current</span><span class="o">+</span><span class="s">&#34;(&#34;</span><span class="p">,</span><span class="n">left</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">right</span><span class="o">&gt;</span><span class="n">left</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">helper</span><span class="p">(</span><span class="n">current</span><span class="o">+</span><span class="s">&#34;)&#34;</span><span class="p">,</span><span class="n">left</span><span class="p">,</span><span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">generateParenthesis</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">helper</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">V</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="24-swap-nodes-in-pairs">24. Swap Nodes in Pairs</h2>
+<p>Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list&rsquo;s nodes (i.e., only nodes themselves may be changed.)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> Solution: First make sure there are two more nodes after the 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> current node and swap those two nodes. Make sure store info about 
+</span></span></span><span class="line"><span class="cl"><span class="cm">the first node and the next node of the second node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for singly-linked list.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct ListNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode *next;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode() : val(0), next(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span><span class="o">*</span> <span class="n">swapPairs</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span><span class="o">*</span> <span class="n">dummy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dummy</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span><span class="o">*</span> <span class="n">current</span> <span class="o">=</span> <span class="n">dummy</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">&amp;&amp;</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ListNode</span><span class="o">*</span> <span class="n">first</span> <span class="o">=</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">first</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ListNode</span><span class="o">*</span> <span class="n">sec_next</span> <span class="o">=</span> <span class="n">first</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">first</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">sec_next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current</span><span class="o">=</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">dummy</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="26-remove-duplicates-from-sorted-array">26. Remove Duplicates from Sorted Array</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">removeDuplicates</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">slow</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">fast</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">fast</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">slow</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">fast</span><span class="p">]){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">fast</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">slow</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">nums</span><span class="p">[</span><span class="n">slow</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">fast</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                <span class="n">fast</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">slow</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="27-remove-element">27. Remove Element</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">removeElement</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">p</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">i</span><span class="p">:</span><span class="n">nums</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="n">val</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">nums</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">p</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">p</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="28-find-the-index-of-the-first-occurrence-in-a-string">28. Find the Index of the First Occurrence in a String</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">strStr</span><span class="p">(</span><span class="n">string</span> <span class="n">haystack</span><span class="p">,</span> <span class="n">string</span> <span class="n">needle</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">haystack</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span> <span class="n">needle</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="o">&lt;=</span><span class="n">haystack</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">haystack</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">needle</span><span class="p">.</span><span class="n">length</span><span class="p">())</span><span class="o">==</span><span class="n">needle</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="58-length-of-last-word">58. Length of Last Word</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">lengthOfLastWord</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">==</span><span class="sc">&#39; &#39;</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">!=</span><span class="sc">&#39; &#39;</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="70-climbing-stairs">70. Climbing Stairs</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">//Author: Yao xu
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/* The idea is using DP; We first initialize the array to the array remember 0,1 and 2.
+</span></span></span><span class="line"><span class="cl"><span class="cm">Then we decide the ways for each of 3 to n
+</span></span></span><span class="line"><span class="cl"><span class="cm">for exmaple, the numnber of solution is the solution at i-1 plus i-2 since we can get we are at now from 
+</span></span></span><span class="line"><span class="cl"><span class="cm">there two steps.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">climbStairs</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>       
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dp</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="80-remove-duplicates-from-sorted-array-ii">80. Remove Duplicates from Sorted Array II</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">Initialize a pointer p with a value of 2. This pointer will keep 
+</span></span></span><span class="line"><span class="cl"><span class="cm">track of the next non-duplicate element&#39;s position.
+</span></span></span><span class="line"><span class="cl"><span class="cm">If the size of the input vector nums is 1, it means there is only 
+</span></span></span><span class="line"><span class="cl"><span class="cm">one element in the array. In this case, we directly return 1 since 
+</span></span></span><span class="line"><span class="cl"><span class="cm">there are no duplicates to remove.
+</span></span></span><span class="line"><span class="cl"><span class="cm">Starting from the third element (index 2) of the vector, iterate 
+</span></span></span><span class="line"><span class="cl"><span class="cm">through the array.
+</span></span></span><span class="line"><span class="cl"><span class="cm">During each iteration, check if the current element nums[i] is 
+</span></span></span><span class="line"><span class="cl"><span class="cm">different from the elements at positions p-2. If it is different, 
+</span></span></span><span class="line"><span class="cl"><span class="cm">it implies that the current element is a new non-duplicate element.
+</span></span></span><span class="line"><span class="cl"><span class="cm">Store the current element nums[i] at the position indicated by the 
+</span></span></span><span class="line"><span class="cl"><span class="cm">pointer p and increment the pointer by 1.After iterating through 
+</span></span></span><span class="line"><span class="cl"><span class="cm">the entire array, return the value of the pointer p as the length 
+</span></span></span><span class="line"><span class="cl"><span class="cm">of the resulting array after removing duplicates.
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="n">class</span> <span class="n">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nl">public</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">removeDuplicates</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">nums</span><span class="p">.</span><span class="nf">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">nums</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="mi">2</span><span class="p">]){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">nums</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="88-merge-sorted-array">88. Merge Sorted Array</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">The algorithm&#39;s basic idea is to iterate from the end to the beginning 
+</span></span></span><span class="line"><span class="cl"><span class="cm">of both arrays, comparing the elements at the current positions and 
+</span></span></span><span class="line"><span class="cl"><span class="cm">inserting the larger element into the end of nums1. The respective 
+</span></span></span><span class="line"><span class="cl"><span class="cm">pointers are then moved accordingly.
+</span></span></span><span class="line"><span class="cl"><span class="cm">Specifically, the loop condition is j &gt;= 0, which means the merging 
+</span></span></span><span class="line"><span class="cl"><span class="cm">operation continues until all elements from nums2 have been inserted 
+</span></span></span><span class="line"><span class="cl"><span class="cm">into nums1. Within the loop, the code first checks if i is greater than 
+</span></span></span><span class="line"><span class="cl"><span class="cm">or equal to 0 and if nums1[i] is greater than nums2[j]. 
+</span></span></span><span class="line"><span class="cl"><span class="cm">If this condition is satisfied, it inserts nums1[i] into nums1[k] and 
+</span></span></span><span class="line"><span class="cl"><span class="cm">moves both i and k one step backward. Otherwise, it inserts nums2[j] 
+</span></span></span><span class="line"><span class="cl"><span class="cm">into nums1[k] and moves both j and k one step backward.
+</span></span></span><span class="line"><span class="cl"><span class="cm">After the loop ends, if there are any remaining elements in nums2, 
+</span></span></span><span class="line"><span class="cl"><span class="cm">they need to be inserted in the front of nums1 until all elements are 
+</span></span></span><span class="line"><span class="cl"><span class="cm">merged. The time complexity of this algorithm is O(m + n), where m and 
+</span></span></span><span class="line"><span class="cl"><span class="cm">n are the lengths of nums1 and nums2, respectively. Since the algorithm 
+</span></span></span><span class="line"><span class="cl"><span class="cm">performs an in-place merge, the space complexity is O(1).
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="n">class</span> <span class="n">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nl">public</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">merge</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums2</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">m</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">j</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">nums1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">nums2</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">                <span class="n">nums1</span><span class="p">[</span><span class="n">k</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums1</span><span class="p">[</span><span class="n">i</span><span class="o">--</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">nums1</span><span class="p">[</span><span class="n">k</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums2</span><span class="p">[</span><span class="n">j</span><span class="o">--</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">       <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="94-binary-tree-inorder-traversal">94. Binary Tree Inorder Traversal</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct TreeNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *left;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *right;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span><span class="o">:</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">inorderhelp</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">inorderhelp</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">inorderhelp</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">inorderTraversal</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">inorderhelp</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="121-best-time-to-buy-and-sell-stock">121. Best Time to Buy and Sell Stock</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">maxProfit</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">prices</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">prices</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">i</span><span class="p">:</span><span class="n">prices</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">min</span><span class="p">)</span> <span class="n">min</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="n">min</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="122-best-time-to-buy-and-sell-stock-ii">122. Best Time to Buy and Sell Stock II</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">// accumulate profit 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">maxProfit</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">prices</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">profit</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">prices</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">profit</span><span class="o">+=</span> <span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">prices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">prices</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">profit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="141-linked-list-cycle">141. Linked List Cycle</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for singly-linked list.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct ListNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode *next;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode(int x) : val(x), next(NULL) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">hasCycle</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="n">ListNode</span><span class="o">*</span> <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="n">ListNode</span><span class="o">*</span> <span class="n">slow</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="k">while</span><span class="p">(</span><span class="n">fast</span> <span class="o">&amp;&amp;</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fast</span><span class="o">=</span><span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">slow</span><span class="o">=</span><span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">fast</span><span class="o">==</span><span class="n">slow</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="p">}</span>
+</span></span><span class="line"><span class="cl">       <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="144-binary-tree-preorder-traversal">144. Binary Tree Preorder Traversal</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct TreeNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *left;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *right;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">preorderTraversal</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">preorderTraversal</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">preorderTraversal</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">vec</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="145-binary-tree-postorder-traversal">145. Binary Tree Postorder Traversal</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct TreeNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *left;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode *right;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">T</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">postorderTraversal</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">postorderTraversal</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">postorderTraversal</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">T</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">T</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="167-two-sum-ii---input-array-is-sorted">167. Two Sum II - Input Array Is Sorted</h2>
+<p>Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1 &lt;= index1 &lt; index2 &lt; numbers.length.
+Return the indices of the two numbers, index1 and index2, added by one as an integer array [index1, index2] of length 2.
+The tests are generated such that there is exactly one solution. You may not use the same element twice.
+Your solution must use only constant extra space.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">twoSum</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unordered_map</span> <span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">M</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">M</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">target</span> <span class="o">-</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">M</span><span class="p">[</span><span class="n">target</span> <span class="o">-</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]]);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sort</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">res</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">M</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">nums</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="169-majority-element">169. Majority Element</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">// class Solution {
+</span></span></span><span class="line"><span class="cl"><span class="c1">// public:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     int majorityElement(vector&lt;int&gt;&amp; nums) {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//         sort(nums.begin(), nums.end());
+</span></span></span><span class="line"><span class="cl"><span class="c1">//         return nums[nums.size()/2];
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     }
+</span></span></span><span class="line"><span class="cl"><span class="c1">// };
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">majorityElement</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">i</span><span class="p">:</span><span class="n">nums</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="189-rotate-array">189. Rotate Array</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">rotate</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">temp</span> <span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">temp</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="p">)</span><span class="o">%</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nums</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="202-happy-number">202. Happy Number</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">// those non-happy number will goes to 4 16 eventully
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">digitSqSum</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">n</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sum</span> <span class="o">+=</span> <span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">n</span><span class="o">/=</span><span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">isHappy</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="k">return</span> <span class="n">isHappy</span><span class="p">(</span><span class="n">digitSqSum</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="205-isomorphic-strings">205. Isomorphic Strings</h2>
+<p>Given two strings s and t, determine if they are isomorphic.
+Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">isIsomorphic</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">,</span> <span class="n">string</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">m1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">m2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">m1</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&amp;&amp;</span> <span class="n">m1</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">!=</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">m2</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&amp;&amp;</span> <span class="n">m2</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">!=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">m1</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m2</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="206-reverse-linked-list">206. Reverse Linked List</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for singly-linked list.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * struct ListNode {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode *next;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode() : val(0), next(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode(int x) : val(x), next(nullptr) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * };
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListNode</span><span class="o">*</span> <span class="n">reverseList</span><span class="p">(</span><span class="n">ListNode</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span><span class="o">*</span> <span class="n">prev</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span><span class="o">*</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ListNode</span><span class="o">*</span> <span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">curr</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next</span> <span class="o">=</span> <span class="n">curr</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">curr</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">prev</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">prev</span> <span class="o">=</span> <span class="n">curr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">curr</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">prev</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="219-contains-duplicate-ii">219. Contains Duplicate II</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">containsNearbyDuplicate</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">m</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;=</span><span class="n">k</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="383-ransom-note">383. Ransom Note</h2>
+<p>Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+Each letter in magazine can only be used once in ransomNote.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">canConstruct</span><span class="p">(</span><span class="n">string</span> <span class="n">ransomNote</span><span class="p">,</span> <span class="n">string</span> <span class="n">magazine</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">c</span><span class="p">:</span><span class="n">magazine</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">c</span><span class="p">:</span><span class="n">ransomNote</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">m</span><span class="p">[</span><span class="n">c</span><span class="p">])</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">m</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div>
     </div>
 
     
