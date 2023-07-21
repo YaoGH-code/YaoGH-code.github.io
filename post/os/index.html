@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- This site was created with Wowchemy. https://www.wowchemy.com -->
-<!-- Last Published: July 9, 2023 --><html lang="en-us" >
+<!-- Last Published: July 20, 2023 --><html lang="en-us" >
 
 
 <head>
@@ -829,7 +829,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    16 min read
+    20 min read
   </span>
   
 
@@ -887,6 +887,57 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">add</span> <span class="no">sp</span><span class="p">,</span> <span class="no">sp</span><span class="p">,</span> <span class="no">a0</span>      <span class="c1"># sp += a0
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">call</span> <span class="no">start</span>          <span class="c1"># go to start in start.c
 </span></span></span></code></pre></div><p>The purpose of the code snippet is to load the address of an initial stack for each core into the sp (stack pointer) register. This allows for a smooth transition to the C code in the start.c file. In start.c, the stack is defined as an array, and each core can utilize a portion of this array as its stack.</p>
+<h1 id="about-spin-lock">About Spin Lock</h1>
+<p>A spinlock is a commonly used synchronization mechanism in operating systems and concurrent programming, with the primary objective to prevent multiple threads or processes from accessing or modifying shared resources simultaneously, thereby causing data inconsistency or race conditions. The basic working principle of a spinlock is that if the lock is already occupied, a thread attempting to acquire the lock will &ldquo;spin&rdquo; in a loop until the lock becomes available.</p>
+<p>A distinguishing characteristic of spinlocks, as compared to other types of locks (such as mutexes), is that they do not put the thread into a sleeping state. When a thread cannot acquire a spinlock, it continues running and repeatedly checks the lock&rsquo;s status instead of being suspended and yielding the CPU to other threads. This makes spinlocks particularly suited for scenarios where the lock holding time is short but needs to be acquired and released quickly. However, spinlocks are not a panacea. Spinning while waiting for the lock to be released consumes CPU resources, and if the lock is held for a long time, this could lead to resource wastage. Thus, understanding when and how to use spinlocks is crucial for efficient concurrency control.</p>
+<p>In the first code snippet:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">lock</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="n">lock</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">try</span> <span class="n">again</span><span class="p">;</span>
+</span></span></code></pre></div><p>This simplistic lock acquisition approach does not consider the complexities introduced by multithreading, either within a single core or across multiple cores. In such environments, multiple threads could concurrently read the lock as being available (<code>*lock == 0</code>) and proceed to acquire it, leading to a race condition where multiple threads think they have exclusive access to the lock.</p>
+<p>To address these concurrency issues, we need to ensure that the check and set operations are atomic, meaning they appear to occur instantaneously and cannot be interrupted. In RISC-V, one way to achieve atomicity is by using the <code>AMOSWAP</code> instruction for an atomic swap operation.</p>
+<p>Consider this revised approach using Compare and Swap (CAS):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cm">/* CAS */</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="nf">__sync_lock_test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="o">-&gt;</span><span class="n">locked</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">);</span>
+</span></span></code></pre></div><p>In this operation, we are attempting to atomically set <code>lock-&gt;locked</code> to 1 and retrieve its old value in one go. If the previous value is not zero, which indicates the lock is currently held by another thread, we continue spinning and attempt the operation again.</p>
+<p>An essential addition here is the <code>memory fence</code>, which is employed to prevent the C compiler or the hardware from reordering memory access instructions in a way that could lead to inconsistencies. This reordering is often done for optimization purposes but can lead to problems in a multithreaded context, especially with locks. By placing a memory fence after acquiring the lock, we ensure that no memory operations that occur after the lock acquisition are mistakenly executed beforehand. Consequently, this preserves the integrity of the data protected by the lock and prevents potential race conditions.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">intr_push</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Read current sstatus */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint64_t</span> <span class="n">cur_sstatus</span> <span class="o">=</span> <span class="nf">read_sstatus</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* If SIE, old_state = 1; if not SIE, old_state = 0 */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">old_state</span> <span class="o">=</span> <span class="p">((</span><span class="n">cur_sstatus</span> <span class="o">&amp;</span> <span class="n">SSTATUS_SIE</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Turn off interrupt */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">write_sstatus</span><span class="p">(</span><span class="nf">read_sstatus</span><span class="p">()</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">SSTATUS_SIE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* If in first level of interrupt, store current intrrupt state */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nf">get_mycore</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">disable_cnt</span><span class="p">)</span> <span class="nf">get_mycore</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">prev_int_state</span> <span class="o">=</span> <span class="n">old_state</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Disable count ++ */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">get_mycore</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">disable_cnt</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">acquire_spinlock</span><span class="p">(</span><span class="k">struct</span> <span class="n">spinlock</span><span class="o">*</span> <span class="n">lock</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">intr_push</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">core_holding</span><span class="p">(</span><span class="n">lock</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">kerror</span><span class="p">(</span><span class="n">__FILE_NAME__</span><span class="p">,</span><span class="n">__LINE__</span><span class="p">,</span><span class="s">&#34;there is already a core holding the lock.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>          
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/* CAS */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="nf">__sync_lock_test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="o">-&gt;</span><span class="n">locked</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">__sync_synchronize</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Update cpu */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lock</span><span class="o">-&gt;</span><span class="n">core</span> <span class="o">=</span> <span class="nf">get_mycore</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Consider another scenario where an interrupt handler and the kernel share a common buffer. Just as the kernel acquires the spinlock for this buffer, an interrupt occurs. The interrupt handler will also try to acquire this spinlock, leading to a <code>deadlock</code> situation.</p>
+<p>To resolve this issue, xv6 opts to disable interrupts prior to acquiring the spinlock and re-enables them only after the lock is released. This strategy not only avoids the aforementioned deadlock scenario but also reduces the amount of time the spinlock is held, thus enhancing overall system efficiency.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cm">/* Per-Core state */</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">core</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">struct</span> <span class="n">proc</span> <span class="o">*</span><span class="n">proc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">struct</span> <span class="n">context</span> <span class="n">context</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">disable_cnt</span><span class="p">;</span>                
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">prev_int_state</span><span class="p">;</span>        
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="kt">core_t</span><span class="p">;</span>
+</span></span></code></pre></div><p>In some situations, the kernel might attempt to acquire multiple spinlocks in a nested manner. In these cases, we don&rsquo;t want the interrupts to be enabled immediately after the first spinlock is released. Instead, the interrupts should only be enabled once the outermost spinlock is released.</p>
+<p>To handle this, we keep track of the nested levels at which each core executes <code>intr_push()</code> by incrementing a <code>disable_cnt</code> with each call. Conversely, every time <code>intr_pop()</code> is called, we decrement <code>disable_cnt</code>. When <code>disable_cnt</code> reaches zero, it indicates that all nested locks have been released, and we can restore the interrupt status that existed on the current core prior to the first <code>intr_push()</code> invocation.</p>
+<p>Managing this carefully ensures we maintain the correct state of interrupts relative to the spinlock handling, preserving the integrity of the operations protected by these locks, and preventing potential deadlock scenarios.</p>
 <h1 id="about-plic---platform-level-interrupt-controller">About PLIC - Platform Level Interrupt Controller</h1>
 <p>Interrupts are events that occur in computer systems when certain devices or processes require immediate attention from the CPU. These devices can include input devices like keyboards or disks. When an interrupt is generated, it signals the CPU to temporarily pause its current execution and handle the interrupt request.
 When an interrupt occurs, a specific bit called the interrupt pending bit associated with the corresponding device is set. All cores that have that particular device enabled are notified, causing a trap or exception to be triggered. This trap transfers control to the interrupt handler, which is responsible for processing the interrupt.
