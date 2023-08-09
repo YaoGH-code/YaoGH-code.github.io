@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<!-- This site was created with Wowchemy. https://www.wowchemy.com -->
+<!-- Last Published: August 8, 2023 --><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.7.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.16f785cdb553c8c4431db6775122af35.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.2/css/academicons.min.css" integrity="sha512-KlJCpRsLf+KKu2VQa5vmRuClRFjxc5lXO03ixZt82HZUk41+1I0bD8KBSA0fY290ayMfWYI9udIqeOWSu1/uZg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.0f229d4b7ebad1917a9a357cba2effab.css" />
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/github-light.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  <meta name="author" content="Yao (John) Xu" />
+
+
+
+
+
+  
+
+<meta name="description" content="Learning notes about x86" />
+
+
+
+<link rel="alternate" hreflang="en-us" href="http://yaogh-code.github.io/post/x86_notes/" />
+<link rel="canonical" href="http://yaogh-code.github.io/post/x86_notes/" />
+
+
+
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+
+
+<link rel="icon" type="image/png" href="/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_32x32_fill_lanczos_center_3.png" />
+<link rel="apple-touch-icon" type="image/png" href="/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_180x180_fill_lanczos_center_3.png" />
+
+<meta name="theme-color" content="#1565c0" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+<meta property="twitter:card" content="summary" />
+
+  <meta property="twitter:site" content="@wowchemy" />
+  <meta property="twitter:creator" content="@wowchemy" />
+<meta property="twitter:image" content="http://yaogh-code.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png" />
+<meta property="og:site_name" content="Yao Xu" />
+<meta property="og:url" content="http://yaogh-code.github.io/post/x86_notes/" />
+<meta property="og:title" content="x86 Notes | Yao Xu" />
+<meta property="og:description" content="Learning notes about x86" /><meta property="og:image" content="http://yaogh-code.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+
+  
+    <meta
+      property="article:published_time"
+      content="2023-06-15T00:00:00&#43;00:00"
+    />
+  
+  
+    <meta property="article:modified_time" content="2023-06-15T00:00:00&#43;00:00">
+  
+
+
+
+
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://yaogh-code.github.io/post/x86_notes/"
+  },
+  "headline": "x86 Notes",
+  
+  "datePublished": "2023-06-15T00:00:00Z",
+  "dateModified": "2023-06-15T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Yao (John) Xu"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Yao Xu",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://yaogh-code.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Learning notes about x86"
+}
+</script>
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <title>x86 Notes | Yao Xu</title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="3e4e500ac33efcde1bc119708162080a" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.ec9d49ca50e4b80bdb08f0417a28ed84.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header header--fixed">
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">Yao Xu</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">Yao Xu</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#skills"><span>Skills</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#accomplishments"><span>Courses</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#experiences"><span>Experience</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Projects</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+        
+
+        
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>x86 Notes</h1>
+
+  
+  <p class="page-subtitle">Learning notes about x86</p>
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span class="author-highlighted">
+      Yao (John) Xu</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jun 15, 2023
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    9 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/learning-notes/">Learning notes</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h2 id="authors-a-cs107-joint-staff-effort-erik-julie-nate"><em>Authors: A CS107 joint staff effort (Erik, Julie, Nate)</em></h2>
+<p>x86-64 (also known as x64 and/or AMD64) is the 64-bit version of the x86/IA32 instruction set. Below is our overview of its features that are relevant to CS107. There is more extensive coverage on these topics in Chapter 3 of the B&amp;O textbook. See also our x86-64 sheet for a compact reference.</p>
+<h2 id="registers">Registers</h2>
+<p>The table below lists the commonly used registers (sixteen general-purpose plus two special). Each register is 64 bits wide; the lower 32-, 16- and 8-bit portions are selectable by a pseudo-register name. Some registers are designated for a certain purpose, such as <code>%rsp</code> being used as the stack pointer or <code>%rax</code> for the return value from a function. Other registers are all-purpose, but have a conventional use depending on whether caller-owned or callee-owned. If the function binky calls winky, we refer to binky as the caller and winky as the callee. For example, the registers used for the first 6 arguments and return value are all callee-owned. The callee can freely use those registers, overwriting existing values without taking any precautions. If <code>%rax</code> holds a value the caller wants to retain, the caller must copy the value to a &ldquo;safe&rdquo; location before making a call. The callee-owned registers are ideal for scratch/temporary use by the callee. In contrast, if the callee intends to use a caller-owned register, it must first preserve its value and restore it before exiting the call. The caller-owned registers are used for local state of the caller that needs to preserved across further function calls.</p>
+<table>
+<thead>
+<tr>
+<th>Register</th>
+<th>Conventional Use</th>
+<th>Low 32-bits</th>
+<th>Low 16-bits</th>
+<th>Low 8-bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%rax</code></td>
+<td>Return value, callee-owned</td>
+<td><code>%eax</code></td>
+<td><code>%ax</code></td>
+<td><code>%al</code></td>
+</tr>
+<tr>
+<td><code>%rdi</code></td>
+<td>1st argument, callee-owned</td>
+<td><code>%edi</code></td>
+<td><code>%di</code></td>
+<td><code>%dil</code></td>
+</tr>
+<tr>
+<td><code>%rsi</code></td>
+<td>2nd argument, callee-owned</td>
+<td><code>%esi</code></td>
+<td><code>%si</code></td>
+<td><code>%sil</code></td>
+</tr>
+<tr>
+<td><code>%rdx</code></td>
+<td>3rd argument, callee-owned</td>
+<td><code>%edx</code></td>
+<td><code>%dx</code></td>
+<td><code>%dl</code></td>
+</tr>
+<tr>
+<td><code>%rcx</code></td>
+<td>4th argument, callee-owned</td>
+<td><code>%ecx</code></td>
+<td><code>%cx</code></td>
+<td><code>%cl</code></td>
+</tr>
+<tr>
+<td><code>%r8</code></td>
+<td>5th argument, callee-owned</td>
+<td><code>%r8d</code></td>
+<td><code>%r8w</code></td>
+<td><code>%r8b</code></td>
+</tr>
+<tr>
+<td><code>%r9</code></td>
+<td>6th argument, callee-owned</td>
+<td><code>%r9d</code></td>
+<td><code>%r9w</code></td>
+<td><code>%r9b</code></td>
+</tr>
+<tr>
+<td><code>%r10</code></td>
+<td>Scratch/temporary, callee-owned</td>
+<td><code>%r10d</code></td>
+<td><code>%r10w</code></td>
+<td><code>%r10b</code></td>
+</tr>
+<tr>
+<td><code>%r11</code></td>
+<td>Scratch/temporary, callee-owned</td>
+<td><code>%r11d</code></td>
+<td><code>%r11w</code></td>
+<td><code>%r11b</code></td>
+</tr>
+<tr>
+<td><code>%rsp</code></td>
+<td>Stack pointer, caller-owned</td>
+<td><code>%esp</code></td>
+<td><code>%sp</code></td>
+<td><code>%spl</code></td>
+</tr>
+<tr>
+<td><code>%rbx</code></td>
+<td>Local variable, caller-owned</td>
+<td><code>%ebx</code></td>
+<td><code>%bx</code></td>
+<td><code>%bl</code></td>
+</tr>
+<tr>
+<td><code>%rbp</code></td>
+<td>Local variable, caller-owned</td>
+<td><code>%ebp</code></td>
+<td><code>%bp</code></td>
+<td><code>%bpl</code></td>
+</tr>
+<tr>
+<td><code>%r12</code></td>
+<td>Local variable, caller-owned</td>
+<td><code>%r12d</code></td>
+<td><code>%r12w</code></td>
+<td><code>%r12b</code></td>
+</tr>
+<tr>
+<td><code>%r13</code></td>
+<td>Local variable, caller-owned</td>
+<td><code>%r13d</code></td>
+<td><code>%r13w</code></td>
+<td><code>%r13b</code></td>
+</tr>
+<tr>
+<td><code>%r14</code></td>
+<td>Local variable, caller-owned</td>
+<td><code>%r14d</code></td>
+<td><code>%r14w</code></td>
+<td><code>%r14b</code></td>
+</tr>
+<tr>
+<td><code>%r15</code></td>
+<td>Local variable, caller-owned</td>
+<td><code>%r15d</code></td>
+<td><code>%r15w</code></td>
+<td><code>%r15b</code></td>
+</tr>
+<tr>
+<td><code>%rip</code></td>
+<td>Instruction pointer</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>%eflags</code></td>
+<td>Status/condition code bits</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="addressing-modes">Addressing Modes</h2>
+<p>True to its CISC nature, x86-64 supports a variety of addressing modes. An addressing mode is an expression that calculates an address in memory to be read/written to. These expressions are used as the source or destination for a <code>mov</code> instruction and other instructions that access memory. The code below demonstrates how to write the immediate value 1 to various memory locations in an example of each of the available addressing modes:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">movl $1, 0x604892         # direct (address is constant value)
+</span></span><span class="line"><span class="cl">movl $1, (%rax)           # indirect (address is in register %rax)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">movl $1, -24(%rbp)        # indirect with displacement
+</span></span><span class="line"><span class="cl">                          # (address = base %rbp + displacement -24)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">movl $1, 8(%rsp, %rdi, 4) # indirect with displacement and scaled-index
+</span></span><span class="line"><span class="cl">                          # (address = base %rsp + displ 8 + index %rdi * scale 4)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">movl $1, (%rax, %rcx, 8)  # (special case scaled-index, displ assumed 0)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">movl $1, 0x8(, %rdx, 4)   # (special case scaled
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-index, base assumed 0)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">movl $1, 0x4(%rax, %rcx)  # (special case scaled-index, scale assumed 1)
+</span></span></code></pre></div><h2 id="common-instructions">Common Instructions</h2>
+<p>A note about instruction suffixes: many instructions have a suffix (<code>b</code>, <code>w</code>, <code>l</code>, or <code>q</code>) which indicates the bitwidth of the operation (1, 2, 4, or 8 bytes, respectively). The suffix is often elided when the bitwidth can be determined from the operands. For example, if the destination register is <code>%eax</code>, it must be 4 bytes, if <code>%ax</code> it must be 2 bytes, and <code>%al</code> would be 1 byte. A few instructions such as <code>movs</code> and <code>movz</code> have two suffixes: the first is for the source operand, the second for the destination. For example, <code>movzbl</code> moves a 1-byte source value to a 4-byte destination.</p>
+<p>When the destination is a sub-register, only those specific bytes in the sub-register are written with one broad exception: a 32-bit instruction zeroes the high-order 32 bits of the destination register.</p>
+<ul>
+<li><code>add src, dst</code>: dst += src</li>
+<li><code>sub src, dst</code>: dst -= src</li>
+<li><code>imul src, dst</code>: dst *= src</li>
+<li><code>neg dst</code>: dst = -dst (arithmetic inverse)</li>
+<li><code>and src, dst</code>: dst &amp;= src</li>
+<li><code>or src, dst</code>: dst |= src</li>
+<li><code>xor src, dst</code>: dst ^= src</li>
+<li><code>not dst</code>: dst = ~dst (bitwise inverse)</li>
+<li><code>shl count, dst</code>: dst &laquo;= count (left shift dst by count positions), synonym <code>sal</code></li>
+<li><code>sar count, dst</code>: dst &raquo;= count (arithmetic right shift dst by count positions)</li>
+<li><code>shr count, dst</code>: dst &raquo;= count (logical right shift dst by count positions)</li>
+</ul>
+<p>Some instructions have special-case variants with different numbers of operands:</p>
+<ul>
+<li><code>imul src</code>: single operand <code>imul</code> assumes the other operand is in <code>%rax</code>, computes 128-bit result, stores high 64-bits in <code>%rdx</code>, low 64-bits in <code>%rax</code></li>
+<li><code>shl dst</code>: dst &laquo;= 1 (no count =&gt; assume 1, same for <code>sar</code>, <code>shr</code>, <code>sal</code>)</li>
+</ul>
+<h2 id="branches-and-other-use-of-condition-codes">Branches and Other Use of Condition Codes</h2>
+<p>The special <code>%eflags</code> register stores a set of boolean flags called the condition codes. Most arithmetic operations update those codes. A conditional jump reads the condition codes to determine whether to take the branch or not. The condition codes include ZF (zero flag), SF (sign flag), OF (overflow flag, signed), and CF (carry flag, unsigned). For example, if the result was zero, the ZF is set; if an operation overflowed (into the sign bit), OF is set.</p>
+<p>The general pattern for all branches is to execute a <code>cmp</code> or <code>test</code> operation to set the flags followed by a jump instruction variant that reads the flags to determine whether to take the branch or continue on. The operands to a <code>cmp</code> or <code>test</code> are immediate, register, or memory locations (with at most one memory operand). There are 32 variants of conditional jump, several of which are synonyms. Here are some example branch instructions.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="n">cmpl</span><span class="w"> </span><span class="n">op2</span><span class="p">,</span><span class="w"> </span><span class="n">op1</span><span class="w">    </span><span class="c1"># computes result = op1 - op2, discards result, sets condition codes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">test</span><span class="w"> </span><span class="n">op2</span><span class="p">,</span><span class="w"> </span><span class="n">op1</span><span class="w">    </span><span class="c1"># computes result = op1 &amp; op2, discards result, sets condition codes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">jmp</span><span class="w"> </span><span class="n">target</span><span class="w">    </span><span class="c1"># unconditional jump
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">je</span><span class="w"> </span><span class="n">target</span><span class="w">    </span><span class="c1"># jump equal, synonym `jz` (jump zero, ZF=1)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jne</span><span class="w"> </span><span class="n">target</span><span class="w">    </span><span class="c1"># jump not equal, synonym `jnz` (jump non-zero, ZF=0)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">js</span><span class="w"> </span><span class="n">target</span><span class="w">    </span><span class="c1"># jump signed (SF=1)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jns</span><span class="w"> </span><span class="n">target</span><span class="w">    </span><span class="c1"># jump not signed (SF=0)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jg</span><span class="w"> </span><span class="n">target</span><span class="w">    </span><span class="c1"># jump greater than, synonym `jnle` (jump not less or equal, ZF=0 and SF=OF)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jge</span><span class="w"> </span><span class="n">target</span><span class="w">    </span><span class="c1"># jump greater or equal, synonym `jnl` (jump not less, SF=OF)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jl</span><span class="w"> </span><span class="n">target</span><span class="w">    </span><span class="c1"># jump less than, synonym `jnge` (jump not greater or equal, SF!=OF)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jle</span><span class="w"> </span><span class="n">target</span><span class="w">    </span><span class="c1"># jump less or equal, synonym `jng` (jump not greater, ZF=1 or SF!=OF)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ja</span><span class="w"> </span><span class="n">target</span><span class="w">    </span><span class="c1"># jump above, synonym `jnbe` (jump not below or equal, CF=0 and ZF=0)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jae</span><span class="w"> </span><span class="n">target</span><span class="w">    </span><span class="c1"># jump above or equal (CF=0)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jb</span><span class="w"> </span><span class="n">target</span><span class="w">    </span><span class="c1"># jump below, synonym `jnae` (jump not above or equal, CF=1)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">jbe</span><span class="w"> </span><span class="n">target</span><span class="w">    </span><span class="c1"># jump below or equal (CF=1 or ZF=1)
+</span></span></span></code></pre></div><h2 id="setx-and-movx">Setx and Movx</h2>
+<p>There are two other families of instructions that read/react to the current condition codes. The <code>setx</code> instructions set a destination register to 0 or 1 according to the status of condition <code>x</code>. The <code>cmovx</code> instructions will conditionally execute a move based on whether condition <code>x</code> holds. The <code>x</code> is a placeholder for any of the conditional variants: <code>e</code>, <code>ne</code>, <code>s</code>, <code>ns</code>, etc.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="n">sete</span><span class="w"> </span><span class="n">dst</span><span class="w">           </span><span class="c1"># set `dst` to 0 or 1 based on zero/equal condition
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">setge</span><span class="w"> </span><span class="n">dst</span><span class="w">          </span><span class="c1"># set `dst` to 0 or 1 based on greater/equal condition
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">cmovns</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="w">    </span><span class="c1"># proceed with `mov` if `ns` condition holds
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">cmovle</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="w">    </span><span class="c1"># proceed with `mov` if `le` condition holds
+</span></span></span></code></pre></div><p>For the <code>setx</code> instruction, the destination must be a single-byte sub-register (e.g., <code>%al</code> for the low byte of <code>%rax</code>). For the <code>cmovx</code> instructions, both the source and destination must be registers.</p>
+<h2 id="function-call-stack">Function Call Stack</h2>
+<p>The <code>%rsp</code> register is used as the &ldquo;stack pointer&rdquo;; <code>push</code> and <code>pop</code> are used to add/remove values from the stack. The <code>push</code> instruction takes one operand: an immediate, a register, or a memory location. <code>Push</code> decrements <code>%rsp</code> and copies the operand to be topmost on the stack. The <code>pop</code> instruction takes one operand, the destination register. `Pop</p>
+<p><code>copies the topmost value to the destination and increments</code>%rsp<code>. It is also valid to directly adjust </code>%rsp` to add/remove an entire array or a collection of variables with a single operation. Note the stack grows downward (toward lower addresses).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">push %rbx         # push value of `%rbx` onto the stack
+</span></span><span class="line"><span class="cl">pushq $0x3        # push immediate value `3` onto the stack
+</span></span><span class="line"><span class="cl">sub $0x10, %rsp   # adjust stack pointer to set aside 16 more bytes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">pop %rax          # pop topmost value from stack into register `%rax`
+</span></span><span class="line"><span class="cl">add $0x10, %rsp   # adjust stack point to remove topmost 16 bytes
+</span></span></code></pre></div><p>Call/return are used to transfer control between functions. The <code>callq</code> instruction takes one operand, the address of the function being called. It pushes the return address (current value of <code>%rip</code>, which is the next instruction after the <code>call</code>) onto the stack and then jumps to the address of the function being called. The <code>retq</code> instruction pops the return address from the stack into <code>%rip</code>, thus resuming at the saved return address.</p>
+<p>To set up for a call, the caller puts the first six arguments into registers <code>%rdi</code>, <code>%rsi</code>, <code>%rdx</code>, <code>%rcx</code>, <code>%r8</code>, and <code>%r9</code> (any additional arguments are pushed onto the stack) and then executes the <code>call</code> instruction.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mov $0x3, %rdi    # first arg is passed in `%rdi`
+</span></span><span class="line"><span class="cl">mov $0x7, %rsi    # second arg is passed in `%rsi`
+</span></span><span class="line"><span class="cl">callq binky       # transfers control to function binky
+</span></span></code></pre></div><p>When the callee finishes, it writes the return value (if any) to <code>%rax</code>, cleans up the stack, and uses the <code>retq</code> instruction to return control to the caller.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mov $0x0, %eax    # write return value to `%rax`
+</span></span><span class="line"><span class="cl">add $0x10, %rsp   # deallocate stack frame
+</span></span><span class="line"><span class="cl">retq              # return from current function, resume caller
+</span></span></code></pre></div><p>The target for a branch or call instruction is most typically an absolute address that was determined at compile-time. However, there are cases where the target is not known until runtime, such as a switch statement compiled into a jump table or when invoking a function pointer. For these, the target address is computed and stored in a register, and the branch/call variant is used <code>je *%rax</code> or <code>callq *%rax</code> to read the target address from the specified register.</p>
+<h2 id="assembly-and-gdb">Assembly and gdb</h2>
+<p>The debugger has many features that allow you to trace and debug code at the assembly level. You can print the value in a register by prefixing its name with <code>$</code> or use the command <code>info reg</code> to dump the values of all registers:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(gdb) p $rsp
+</span></span><span class="line"><span class="cl">(gdb) info reg
+</span></span></code></pre></div><p>The <code>disassemble</code> command will print the disassembly for a function by name. The <code>x</code> command supports an <code>i</code> format which interprets the contents of a memory address as an encoded instruction.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(gdb) disassemble main   // disassemble, print all instructions of main
+</span></span><span class="line"><span class="cl">(gdb) x/8i main          // disassemble, print first 8 instructions
+</span></span></code></pre></div><p>You can set a breakpoint at a particular assembly instruction by its direct address or offset within a function:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(gdb) b *0x08048375
+</span></span><span class="line"><span class="cl">(gdb) b *main+7          // break at instruction 7 bytes into main
+</span></span></code></pre></div><p>You can advance by instruction (instead of source line) using the <code>stepi</code> and <code>nexti</code> commands.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(gdb) stepi
+</span></span><span class="line"><span class="cl">(gdb) nexti
+</span></span></code></pre></div>
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/academic/">Academic</a>
+  
+  <a class="badge badge-light" href="/tag/x86/">x86</a>
+  
+  <a class="badge badge-light" href="/tag/learning-notes/">Learning notes</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fyaogh-code.github.io%2Fpost%2Fx86_notes%2F&amp;text=x86&#43;Notes" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fyaogh-code.github.io%2Fpost%2Fx86_notes%2F&amp;t=x86&#43;Notes" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a href="mailto:?subject=x86%20Notes&amp;body=http%3A%2F%2Fyaogh-code.github.io%2Fpost%2Fx86_notes%2F" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=http%3A%2F%2Fyaogh-code.github.io%2Fpost%2Fx86_notes%2F&amp;title=x86&#43;Notes" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=x86&#43;Notes%20http%3A%2F%2Fyaogh-code.github.io%2Fpost%2Fx86_notes%2F" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=http%3A%2F%2Fyaogh-code.github.io%2Fpost%2Fx86_notes%2F&amp;title=x86&#43;Notes" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="http://yaogh-code.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu59ef75cf9b43e629b03a2eb6d5690fa5_817895_270x270_fill_q75_lanczos_center.jpg" alt="Yao (John) Xu"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="http://yaogh-code.github.io/">Yao (John) Xu</a></h5>
+      <h6 class="card-subtitle">Graduate student at Carnegie Mellon University</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:johnx9566@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/YaoGH-code" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/johnnyyxu" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/uploads/resume1.pdf" >
+        <i class="ai ai-cv"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © {2023} Yao Xu
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.d26509351aa0ff874abbee824e982e9b.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+
+  <script src="/js/wowchemy-headroom.db4755770454eb63685f8de785c0a172.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.e8ee06ba8371980ffde659871dd593b0.js"></script>
+
+
+
+
+
+
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <pre><code></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="/js/wowchemy-publication.68f8d7090562ca65fc6d3cb3f8f2d2cb.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
