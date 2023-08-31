@@ -2,187 +2,187 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://yaogh-code.github.io/talk/example-talk/</loc>
+    <loc>http://yaoxu.github.io/talk/example-talk/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/event/</loc>
+    <loc>http://yaoxu.github.io/event/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/post/locks/</loc>
+    <loc>http://yaoxu.github.io/post/locks/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/tag/academic/</loc>
+    <loc>http://yaoxu.github.io/tag/academic/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/categories/</loc>
+    <loc>http://yaoxu.github.io/categories/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/tag/learning-notes/</loc>
+    <loc>http://yaoxu.github.io/tag/learning-notes/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/category/learning-notes/</loc>
+    <loc>http://yaoxu.github.io/category/learning-notes/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/tag/locks/</loc>
+    <loc>http://yaoxu.github.io/tag/locks/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/tag/operating-systems/</loc>
+    <loc>http://yaoxu.github.io/tag/operating-systems/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/post/</loc>
+    <loc>http://yaoxu.github.io/post/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/tags/</loc>
+    <loc>http://yaoxu.github.io/tags/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/tag/x86/</loc>
+    <loc>http://yaoxu.github.io/tag/x86/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/post/x86_notes/</loc>
+    <loc>http://yaoxu.github.io/post/x86_notes/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/post/com/</loc>
+    <loc>http://yaoxu.github.io/post/com/</loc>
     <lastmod>2023-05-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/tag/open-source/</loc>
+    <loc>http://yaoxu.github.io/tag/open-source/</loc>
     <lastmod>2023-05-02T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/category/operating-system/</loc>
+    <loc>http://yaoxu.github.io/category/operating-system/</loc>
     <lastmod>2023-05-02T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/post/os/</loc>
+    <loc>http://yaoxu.github.io/post/os/</loc>
     <lastmod>2023-05-02T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/post/uthread/</loc>
+    <loc>http://yaoxu.github.io/post/uthread/</loc>
     <lastmod>2023-05-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/category/parallel-computing/</loc>
+    <loc>http://yaoxu.github.io/category/parallel-computing/</loc>
     <lastmod>2023-05-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/post/leetcode/</loc>
+    <loc>http://yaoxu.github.io/post/leetcode/</loc>
     <lastmod>2023-04-30T10:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/post/vmp_sim/</loc>
+    <loc>http://yaoxu.github.io/post/vmp_sim/</loc>
     <lastmod>2023-04-30T02:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/category/c-programming/</loc>
+    <loc>http://yaoxu.github.io/category/c-programming/</loc>
     <lastmod>2023-04-30T02:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/post/mcpu/</loc>
+    <loc>http://yaoxu.github.io/post/mcpu/</loc>
     <lastmod>2023-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/category/computer-architecture/</loc>
+    <loc>http://yaoxu.github.io/category/computer-architecture/</loc>
     <lastmod>2023-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/category/cpu-design/</loc>
+    <loc>http://yaoxu.github.io/category/cpu-design/</loc>
     <lastmod>2023-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/category/verilog/</loc>
+    <loc>http://yaoxu.github.io/category/verilog/</loc>
     <lastmod>2023-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/post/cache/</loc>
+    <loc>http://yaoxu.github.io/post/cache/</loc>
     <lastmod>2023-04-29T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/post/makefile/</loc>
+    <loc>http://yaoxu.github.io/post/makefile/</loc>
     <lastmod>2023-04-29T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/</loc>
+    <loc>http://yaoxu.github.io/</loc>
     <lastmod>2022-10-24T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/publication-type/3/</loc>
+    <loc>http://yaoxu.github.io/publication-type/3/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/publication/preprint/</loc>
+    <loc>http://yaoxu.github.io/publication/preprint/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/publication_types/</loc>
+    <loc>http://yaoxu.github.io/publication_types/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/publication/</loc>
+    <loc>http://yaoxu.github.io/publication/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/tag/source-themes/</loc>
+    <loc>http://yaoxu.github.io/tag/source-themes/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/slides/</loc>
+    <loc>http://yaoxu.github.io/slides/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/slides/example/</loc>
+    <loc>http://yaoxu.github.io/slides/example/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/tag/deep-learning/</loc>
+    <loc>http://yaoxu.github.io/tag/deep-learning/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/tag/demo/</loc>
+    <loc>http://yaoxu.github.io/tag/demo/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/project/example/</loc>
+    <loc>http://yaoxu.github.io/project/example/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/project/external-project/</loc>
+    <loc>http://yaoxu.github.io/project/external-project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/project/</loc>
+    <loc>http://yaoxu.github.io/project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/publication-type/2/</loc>
+    <loc>http://yaoxu.github.io/publication-type/2/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/publication/journal-article/</loc>
+    <loc>http://yaoxu.github.io/publication/journal-article/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/publication-type/1/</loc>
+    <loc>http://yaoxu.github.io/publication-type/1/</loc>
     <lastmod>2013-07-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/publication/conference-paper/</loc>
+    <loc>http://yaoxu.github.io/publication/conference-paper/</loc>
     <lastmod>2013-07-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://yaogh-code.github.io/admin/</loc>
+    <loc>http://yaoxu.github.io/admin/</loc>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>
