@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Operating Systems | Yao Xu</title>
-    <link>http://yaoxu.github.io/tag/operating-systems/</link>
-      <atom:link href="http://yaoxu.github.io/tag/operating-systems/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://yaogh-code.github.io/tag/operating-systems/</link>
+      <atom:link href="http://yaogh-code.github.io/tag/operating-systems/index.xml" rel="self" type="application/rss+xml" />
     <description>Operating Systems</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 15 Jun 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://yaoxu.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
+      <url>http://yaogh-code.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
       <title>Operating Systems</title>
-      <link>http://yaoxu.github.io/tag/operating-systems/</link>
+      <link>http://yaogh-code.github.io/tag/operating-systems/</link>
     </image>
     
     <item>
       <title>About Locks</title>
-      <link>http://yaoxu.github.io/post/locks/</link>
+      <link>http://yaogh-code.github.io/post/locks/</link>
       <pubDate>Thu, 15 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://yaoxu.github.io/post/locks/</guid>
+      <guid>http://yaogh-code.github.io/post/locks/</guid>
       <description>&lt;h1 id=&#34;test-and-set-based-lock&#34;&gt;Test-and-set based lock&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-asm&#34; data-lang=&#34;asm&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nl&#34;&gt;lock:&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nl&#34;&gt;unlock:&lt;/span&gt;
@@ -74,7 +74,7 @@
                /post/locks/tst_hu9a886f758ee66d7a447e8907d4b8a8a2_124306_f1e74c366c1f1ab9a3277a83a89461f1.webp 400w,
                /post/locks/tst_hu9a886f758ee66d7a447e8907d4b8a8a2_124306_11b54eb8fb8e88a863782e8cdb27e6c7.webp 760w,
                /post/locks/tst_hu9a886f758ee66d7a447e8907d4b8a8a2_124306_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaoxu.github.io/post/locks/tst_hu9a886f758ee66d7a447e8907d4b8a8a2_124306_f1e74c366c1f1ab9a3277a83a89461f1.webp&#34;
+               src=&#34;http://yaogh-code.github.io/post/locks/tst_hu9a886f758ee66d7a447e8907d4b8a8a2_124306_f1e74c366c1f1ab9a3277a83a89461f1.webp&#34;
                width=&#34;760&#34;
                height=&#34;571&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;

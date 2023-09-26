@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Demo | Yao Xu</title>
-    <link>http://yaoxu.github.io/tag/demo/</link>
-      <atom:link href="http://yaoxu.github.io/tag/demo/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://yaogh-code.github.io/tag/demo/</link>
+      <atom:link href="http://yaogh-code.github.io/tag/demo/index.xml" rel="self" type="application/rss+xml" />
     <description>Demo</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://yaoxu.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
+      <url>http://yaogh-code.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
       <title>Demo</title>
-      <link>http://yaoxu.github.io/tag/demo/</link>
+      <link>http://yaogh-code.github.io/tag/demo/</link>
     </image>
     
     <item>
       <title>External Project</title>
-      <link>http://yaoxu.github.io/project/external-project/</link>
+      <link>http://yaogh-code.github.io/project/external-project/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>http://yaoxu.github.io/project/external-project/</guid>
+      <guid>http://yaogh-code.github.io/project/external-project/</guid>
       <description></description>
     </item>
     

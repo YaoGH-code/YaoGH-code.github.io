@@ -1,3 +1,3 @@
 User-agent: *
 
-Sitemap: http://yaoxu.github.io/sitemap.xml
+Sitemap: http://yaogh-code.github.io/sitemap.xml

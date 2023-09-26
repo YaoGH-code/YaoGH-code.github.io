@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Open Source | Yao Xu</title>
-    <link>http://yaoxu.github.io/tag/open-source/</link>
-      <atom:link href="http://yaoxu.github.io/tag/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://yaogh-code.github.io/tag/open-source/</link>
+      <atom:link href="http://yaogh-code.github.io/tag/open-source/index.xml" rel="self" type="application/rss+xml" />
     <description>Open Source</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 02 May 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://yaoxu.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
+      <url>http://yaogh-code.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
       <title>Open Source</title>
-      <link>http://yaoxu.github.io/tag/open-source/</link>
+      <link>http://yaogh-code.github.io/tag/open-source/</link>
     </image>
     
     <item>
       <title>RISC-V OS Kernel Rewrite Based on MIT Xv6</title>
-      <link>http://yaoxu.github.io/post/os/</link>
+      <link>http://yaogh-code.github.io/post/os/</link>
       <pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate>
-      <guid>http://yaoxu.github.io/post/os/</guid>
+      <guid>http://yaogh-code.github.io/post/os/</guid>
       <description>&lt;h1 id=&#34;repo-link&#34;&gt;Repo Link&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/YaoGH-code/OS&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/YaoGH-code/OS&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&#34;entrys&#34;&gt;entry.S&lt;/h1&gt;
@@ -342,7 +342,7 @@ Finally, we jump to the user trap C code, which allows further processing and ha
                /post/os/kvm_map_hu1323a63b9b8de467c3809f82f9e2e3e1_66252_ef2029b9fd6f13042d6c158ceb8653d5.webp 400w,
                /post/os/kvm_map_hu1323a63b9b8de467c3809f82f9e2e3e1_66252_068b468d05ec8b4d30a3856bb8a6cd90.webp 760w,
                /post/os/kvm_map_hu1323a63b9b8de467c3809f82f9e2e3e1_66252_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaoxu.github.io/post/os/kvm_map_hu1323a63b9b8de467c3809f82f9e2e3e1_66252_ef2029b9fd6f13042d6c158ceb8653d5.webp&#34;
+               src=&#34;http://yaogh-code.github.io/post/os/kvm_map_hu1323a63b9b8de467c3809f82f9e2e3e1_66252_ef2029b9fd6f13042d6c158ceb8653d5.webp&#34;
                width=&#34;637&#34;
                height=&#34;649&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -454,9 +454,9 @@ Additionally, unmap_pages() calls the kfree() function to free the corresponding
     
     <item>
       <title>A Preemptive User-Level Thread Library</title>
-      <link>http://yaoxu.github.io/post/uthread/</link>
+      <link>http://yaogh-code.github.io/post/uthread/</link>
       <pubDate>Mon, 01 May 2023 00:00:00 +0000</pubDate>
-      <guid>http://yaoxu.github.io/post/uthread/</guid>
+      <guid>http://yaogh-code.github.io/post/uthread/</guid>
       <description>&lt;h1 id=&#34;repo-link&#34;&gt;Repo Link&lt;/h1&gt;
 &lt;!-- https://github.com/YaoGH-code/uthread --&gt;
 &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
@@ -574,7 +574,7 @@ via the act.sa sigaction field. This handler takes three arguments, as follows:&
                /post/uthread/sighand_hu7f8dee5d173f9a9869715e829c72a187_131089_d2894f1e1c912ed180b8db41f9733ff9.webp 400w,
                /post/uthread/sighand_hu7f8dee5d173f9a9869715e829c72a187_131089_b7f36991a08d6856365c9a19333d569e.webp 760w,
                /post/uthread/sighand_hu7f8dee5d173f9a9869715e829c72a187_131089_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaoxu.github.io/post/uthread/sighand_hu7f8dee5d173f9a9869715e829c72a187_131089_d2894f1e1c912ed180b8db41f9733ff9.webp&#34;
+               src=&#34;http://yaogh-code.github.io/post/uthread/sighand_hu7f8dee5d173f9a9869715e829c72a187_131089_d2894f1e1c912ed180b8db41f9733ff9.webp&#34;
                width=&#34;760&#34;
                height=&#34;488&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -677,7 +677,7 @@ when the scheduler step through it may encounter invalid memory.&lt;/p&gt;
                /post/uthread/queue_hu72af6a3797907ec985e4e22fb9984c1e_44693_97b389937f232bd3c2fa4be21bd1af47.webp 400w,
                /post/uthread/queue_hu72af6a3797907ec985e4e22fb9984c1e_44693_7634bddfe2b51b26d3867cabbf17b363.webp 760w,
                /post/uthread/queue_hu72af6a3797907ec985e4e22fb9984c1e_44693_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaoxu.github.io/post/uthread/queue_hu72af6a3797907ec985e4e22fb9984c1e_44693_97b389937f232bd3c2fa4be21bd1af47.webp&#34;
+               src=&#34;http://yaogh-code.github.io/post/uthread/queue_hu72af6a3797907ec985e4e22fb9984c1e_44693_97b389937f232bd3c2fa4be21bd1af47.webp&#34;
                width=&#34;760&#34;
                height=&#34;162&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -707,7 +707,7 @@ and wait to be joined and resource recycled.&lt;/p&gt;
                /post/uthread/lifecycle_hu7610a21516e3593a9a39014e1a928afb_85821_b4039154c552a291ab7bc7a6f267fa74.webp 400w,
                /post/uthread/lifecycle_hu7610a21516e3593a9a39014e1a928afb_85821_125c0fae52ab55226588b96a35c4d2f1.webp 760w,
                /post/uthread/lifecycle_hu7610a21516e3593a9a39014e1a928afb_85821_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaoxu.github.io/post/uthread/lifecycle_hu7610a21516e3593a9a39014e1a928afb_85821_b4039154c552a291ab7bc7a6f267fa74.webp&#34;
+               src=&#34;http://yaogh-code.github.io/post/uthread/lifecycle_hu7610a21516e3593a9a39014e1a928afb_85821_b4039154c552a291ab7bc7a6f267fa74.webp&#34;
                width=&#34;760&#34;
                height=&#34;555&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -739,7 +739,7 @@ Figure 4 shows the total execution time of Fib 30 with 4000 uthreads and 1,2,3,4
                /post/uthread/Execution_time_hub6869e153def85892dbb27351402799c_27375_f3bfb4881b9bbe390def5b82bad963f0.webp 400w,
                /post/uthread/Execution_time_hub6869e153def85892dbb27351402799c_27375_338b18efa9776b33318ae00d1977ce4b.webp 760w,
                /post/uthread/Execution_time_hub6869e153def85892dbb27351402799c_27375_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaoxu.github.io/post/uthread/Execution_time_hub6869e153def85892dbb27351402799c_27375_f3bfb4881b9bbe390def5b82bad963f0.webp&#34;
+               src=&#34;http://yaogh-code.github.io/post/uthread/Execution_time_hub6869e153def85892dbb27351402799c_27375_f3bfb4881b9bbe390def5b82bad963f0.webp&#34;
                width=&#34;600&#34;
                height=&#34;390&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -767,7 +767,7 @@ Figure 4 shows the total execution time of Fib 30 with 4000 uthreads and 1,2,3,4
                /post/uthread/speedup_hud022a92908b94966ffa07b4014372a93_23527_a2a6877b3e78ece1465a1887646c9cfa.webp 400w,
                /post/uthread/speedup_hud022a92908b94966ffa07b4014372a93_23527_7d411da10e384d0611c1fc5fb501f783.webp 760w,
                /post/uthread/speedup_hud022a92908b94966ffa07b4014372a93_23527_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaoxu.github.io/post/uthread/speedup_hud022a92908b94966ffa07b4014372a93_23527_a2a6877b3e78ece1465a1887646c9cfa.webp&#34;
+               src=&#34;http://yaogh-code.github.io/post/uthread/speedup_hud022a92908b94966ffa07b4014372a93_23527_a2a6877b3e78ece1465a1887646c9cfa.webp&#34;
                width=&#34;600&#34;
                height=&#34;390&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -796,7 +796,7 @@ The second test is using fixed amount of workers with different number of uthrea
                /post/uthread/exe_time_huc5f0a8a855a8a650de468e811acc24b2_28942_af0a8236d561f19e30e7a97b9ec47119.webp 400w,
                /post/uthread/exe_time_huc5f0a8a855a8a650de468e811acc24b2_28942_42fc2d62fb1afef2f1b0315b321bb19a.webp 760w,
                /post/uthread/exe_time_huc5f0a8a855a8a650de468e811acc24b2_28942_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaoxu.github.io/post/uthread/exe_time_huc5f0a8a855a8a650de468e811acc24b2_28942_af0a8236d561f19e30e7a97b9ec47119.webp&#34;
+               src=&#34;http://yaogh-code.github.io/post/uthread/exe_time_huc5f0a8a855a8a650de468e811acc24b2_28942_af0a8236d561f19e30e7a97b9ec47119.webp&#34;
                width=&#34;600&#34;
                height=&#34;390&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -810,9 +810,9 @@ Computing, 68(7), 1008–1020. &lt;a href=&#34;https://doi.org/10.1016/j.jpdc.20
     
     <item>
       <title>A Simulator of Virtual Memory and Process Scheduling</title>
-      <link>http://yaoxu.github.io/post/vmp_sim/</link>
+      <link>http://yaogh-code.github.io/post/vmp_sim/</link>
       <pubDate>Sun, 30 Apr 2023 02:00:00 +0000</pubDate>
-      <guid>http://yaoxu.github.io/post/vmp_sim/</guid>
+      <guid>http://yaogh-code.github.io/post/vmp_sim/</guid>
       <description>&lt;h2 id=&#34;repo-link&#34;&gt;Repo Link:&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/YaoGH-code/MemSim&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/YaoGH-code/MemSim&lt;/a&gt;&lt;/p&gt;
 </description>
@@ -820,9 +820,9 @@ Computing, 68(7), 1008–1020. &lt;a href=&#34;https://doi.org/10.1016/j.jpdc.20
     
     <item>
       <title>A 5-stage pipeline MIPS CPU</title>
-      <link>http://yaoxu.github.io/post/mcpu/</link>
+      <link>http://yaogh-code.github.io/post/mcpu/</link>
       <pubDate>Sun, 30 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>http://yaoxu.github.io/post/mcpu/</guid>
+      <guid>http://yaogh-code.github.io/post/mcpu/</guid>
       <description>&lt;h1 id=&#34;repo-link&#34;&gt;Repo Link&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/YaoGH-code/mCPU&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/YaoGH-code/mCPU&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
@@ -852,7 +852,7 @@ MIPS processors employ a five-stage pipeline, including instruction fetch, instr
                /post/mcpu/pipeline_hudb3132c6a65292d7bcc467d1157af924_49776_93e1b4c91cf3ca7a05af67e3502d6d62.webp 400w,
                /post/mcpu/pipeline_hudb3132c6a65292d7bcc467d1157af924_49776_6f0b1e1333cee2e1fc091fa2c2f7e0c9.webp 760w,
                /post/mcpu/pipeline_hudb3132c6a65292d7bcc467d1157af924_49776_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaoxu.github.io/post/mcpu/pipeline_hudb3132c6a65292d7bcc467d1157af924_49776_93e1b4c91cf3ca7a05af67e3502d6d62.webp&#34;
+               src=&#34;http://yaogh-code.github.io/post/mcpu/pipeline_hudb3132c6a65292d7bcc467d1157af924_49776_93e1b4c91cf3ca7a05af67e3502d6d62.webp&#34;
                width=&#34;637&#34;
                height=&#34;233&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -895,7 +895,7 @@ MIPS processors employ a five-stage pipeline, including instruction fetch, instr
                /post/mcpu/inst_hu15dfa85bd2086bc24f5770631c7f3697_1512767_6929362b380fbac60f299e210dda9ef7.webp 400w,
                /post/mcpu/inst_hu15dfa85bd2086bc24f5770631c7f3697_1512767_1f333696f8a24b945d22e98f5d2b79da.webp 760w,
                /post/mcpu/inst_hu15dfa85bd2086bc24f5770631c7f3697_1512767_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaoxu.github.io/post/mcpu/inst_hu15dfa85bd2086bc24f5770631c7f3697_1512767_6929362b380fbac60f299e210dda9ef7.webp&#34;
+               src=&#34;http://yaogh-code.github.io/post/mcpu/inst_hu15dfa85bd2086bc24f5770631c7f3697_1512767_6929362b380fbac60f299e210dda9ef7.webp&#34;
                width=&#34;760&#34;
                height=&#34;466&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -924,7 +924,7 @@ MIPS processors employ a five-stage pipeline, including instruction fetch, instr
                /post/mcpu/format_hu05f80807f171e7fa4052f186c7c56bbd_336070_9a02269c4b175473d707fbddc06246b3.webp 400w,
                /post/mcpu/format_hu05f80807f171e7fa4052f186c7c56bbd_336070_a9cdcd147be056fb04ed6476171de7c4.webp 760w,
                /post/mcpu/format_hu05f80807f171e7fa4052f186c7c56bbd_336070_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaoxu.github.io/post/mcpu/format_hu05f80807f171e7fa4052f186c7c56bbd_336070_9a02269c4b175473d707fbddc06246b3.webp&#34;
+               src=&#34;http://yaogh-code.github.io/post/mcpu/format_hu05f80807f171e7fa4052f186c7c56bbd_336070_9a02269c4b175473d707fbddc06246b3.webp&#34;
                width=&#34;760&#34;
                height=&#34;117&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -972,7 +972,7 @@ with a different funct code. So, Op code and funct code combined will be provide
                /post/mcpu/RTL_hu065ead26b1d81c746475df4a32486d4a_25121_7d428c2d05928696796cefbc52f90ac6.webp 400w,
                /post/mcpu/RTL_hu065ead26b1d81c746475df4a32486d4a_25121_559f22455183e76c554b3ac0f4530197.webp 760w,
                /post/mcpu/RTL_hu065ead26b1d81c746475df4a32486d4a_25121_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaoxu.github.io/post/mcpu/RTL_hu065ead26b1d81c746475df4a32486d4a_25121_7d428c2d05928696796cefbc52f90ac6.webp&#34;
+               src=&#34;http://yaogh-code.github.io/post/mcpu/RTL_hu065ead26b1d81c746475df4a32486d4a_25121_7d428c2d05928696796cefbc52f90ac6.webp&#34;
                width=&#34;695&#34;
                height=&#34;365&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -1007,7 +1007,7 @@ with a different funct code. So, Op code and funct code combined will be provide
                /post/mcpu/WF_hu65981b8fd6aec216c24366d4c8ea2367_150116_89fdd5cfc51f9cb44f46551d323c22c3.webp 400w,
                /post/mcpu/WF_hu65981b8fd6aec216c24366d4c8ea2367_150116_f054340b8581abc60eb343afe825eed1.webp 760w,
                /post/mcpu/WF_hu65981b8fd6aec216c24366d4c8ea2367_150116_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaoxu.github.io/post/mcpu/WF_hu65981b8fd6aec216c24366d4c8ea2367_150116_89fdd5cfc51f9cb44f46551d323c22c3.webp&#34;
+               src=&#34;http://yaogh-code.github.io/post/mcpu/WF_hu65981b8fd6aec216c24366d4c8ea2367_150116_89fdd5cfc51f9cb44f46551d323c22c3.webp&#34;
                width=&#34;760&#34;
                height=&#34;418&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>x86 | Yao Xu</title>
-    <link>http://yaoxu.github.io/tag/x86/</link>
-      <atom:link href="http://yaoxu.github.io/tag/x86/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://yaogh-code.github.io/tag/x86/</link>
+      <atom:link href="http://yaogh-code.github.io/tag/x86/index.xml" rel="self" type="application/rss+xml" />
     <description>x86</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 15 Jun 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://yaoxu.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
+      <url>http://yaogh-code.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
       <title>x86</title>
-      <link>http://yaoxu.github.io/tag/x86/</link>
+      <link>http://yaogh-code.github.io/tag/x86/</link>
     </image>
     
     <item>
       <title>x86 Notes</title>
-      <link>http://yaoxu.github.io/post/x86_notes/</link>
+      <link>http://yaogh-code.github.io/post/x86_notes/</link>
       <pubDate>Thu, 15 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://yaoxu.github.io/post/x86_notes/</guid>
+      <guid>http://yaogh-code.github.io/post/x86_notes/</guid>
       <description>&lt;h2 id=&#34;authors-a-cs107-joint-staff-effort-erik-julie-nate&#34;&gt;&lt;em&gt;Authors: A CS107 joint staff effort (Erik, Julie, Nate)&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;x86-64 (also known as x64 and/or AMD64) is the 64-bit version of the x86/IA32 instruction set. Below is our overview of its features that are relevant to CS107. There is more extensive coverage on these topics in Chapter 3 of the B&amp;amp;O textbook. See also our x86-64 sheet for a compact reference.&lt;/p&gt;
 &lt;h2 id=&#34;registers&#34;&gt;Registers&lt;/h2&gt;
