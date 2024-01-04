@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Parallel Computing | Yao Xu</title>
-    <link>http://yaogh-code.github.io/category/parallel-computing/</link>
-      <atom:link href="http://yaogh-code.github.io/category/parallel-computing/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://example.com/category/parallel-computing/</link>
+      <atom:link href="https://example.com/category/parallel-computing/index.xml" rel="self" type="application/rss+xml" />
     <description>Parallel Computing</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 01 May 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://yaogh-code.github.io/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
+      <url>https://example.com/media/icon_hu3fa31baf23334842a6c8f8d4ce717078_16335_512x512_fill_lanczos_center_3.png</url>
       <title>Parallel Computing</title>
-      <link>http://yaogh-code.github.io/category/parallel-computing/</link>
+      <link>https://example.com/category/parallel-computing/</link>
     </image>
     
     <item>
       <title>A Preemptive User-Level Thread Library</title>
-      <link>http://yaogh-code.github.io/post/uthread/</link>
+      <link>https://example.com/post/uthread/</link>
       <pubDate>Mon, 01 May 2023 00:00:00 +0000</pubDate>
-      <guid>http://yaogh-code.github.io/post/uthread/</guid>
+      <guid>https://example.com/post/uthread/</guid>
       <description>&lt;h1 id=&#34;repo-link&#34;&gt;Repo Link&lt;/h1&gt;
 &lt;!-- https://github.com/YaoGH-code/uthread --&gt;
 &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
@@ -134,7 +134,7 @@ via the act.sa sigaction field. This handler takes three arguments, as follows:&
                /post/uthread/sighand_hu7f8dee5d173f9a9869715e829c72a187_131089_d2894f1e1c912ed180b8db41f9733ff9.webp 400w,
                /post/uthread/sighand_hu7f8dee5d173f9a9869715e829c72a187_131089_b7f36991a08d6856365c9a19333d569e.webp 760w,
                /post/uthread/sighand_hu7f8dee5d173f9a9869715e829c72a187_131089_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaogh-code.github.io/post/uthread/sighand_hu7f8dee5d173f9a9869715e829c72a187_131089_d2894f1e1c912ed180b8db41f9733ff9.webp&#34;
+               src=&#34;https://example.com/post/uthread/sighand_hu7f8dee5d173f9a9869715e829c72a187_131089_d2894f1e1c912ed180b8db41f9733ff9.webp&#34;
                width=&#34;760&#34;
                height=&#34;488&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -237,7 +237,7 @@ when the scheduler step through it may encounter invalid memory.&lt;/p&gt;
                /post/uthread/queue_hu72af6a3797907ec985e4e22fb9984c1e_44693_97b389937f232bd3c2fa4be21bd1af47.webp 400w,
                /post/uthread/queue_hu72af6a3797907ec985e4e22fb9984c1e_44693_7634bddfe2b51b26d3867cabbf17b363.webp 760w,
                /post/uthread/queue_hu72af6a3797907ec985e4e22fb9984c1e_44693_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaogh-code.github.io/post/uthread/queue_hu72af6a3797907ec985e4e22fb9984c1e_44693_97b389937f232bd3c2fa4be21bd1af47.webp&#34;
+               src=&#34;https://example.com/post/uthread/queue_hu72af6a3797907ec985e4e22fb9984c1e_44693_97b389937f232bd3c2fa4be21bd1af47.webp&#34;
                width=&#34;760&#34;
                height=&#34;162&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -267,7 +267,7 @@ and wait to be joined and resource recycled.&lt;/p&gt;
                /post/uthread/lifecycle_hu7610a21516e3593a9a39014e1a928afb_85821_b4039154c552a291ab7bc7a6f267fa74.webp 400w,
                /post/uthread/lifecycle_hu7610a21516e3593a9a39014e1a928afb_85821_125c0fae52ab55226588b96a35c4d2f1.webp 760w,
                /post/uthread/lifecycle_hu7610a21516e3593a9a39014e1a928afb_85821_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaogh-code.github.io/post/uthread/lifecycle_hu7610a21516e3593a9a39014e1a928afb_85821_b4039154c552a291ab7bc7a6f267fa74.webp&#34;
+               src=&#34;https://example.com/post/uthread/lifecycle_hu7610a21516e3593a9a39014e1a928afb_85821_b4039154c552a291ab7bc7a6f267fa74.webp&#34;
                width=&#34;760&#34;
                height=&#34;555&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -299,7 +299,7 @@ Figure 4 shows the total execution time of Fib 30 with 4000 uthreads and 1,2,3,4
                /post/uthread/Execution_time_hub6869e153def85892dbb27351402799c_27375_f3bfb4881b9bbe390def5b82bad963f0.webp 400w,
                /post/uthread/Execution_time_hub6869e153def85892dbb27351402799c_27375_338b18efa9776b33318ae00d1977ce4b.webp 760w,
                /post/uthread/Execution_time_hub6869e153def85892dbb27351402799c_27375_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaogh-code.github.io/post/uthread/Execution_time_hub6869e153def85892dbb27351402799c_27375_f3bfb4881b9bbe390def5b82bad963f0.webp&#34;
+               src=&#34;https://example.com/post/uthread/Execution_time_hub6869e153def85892dbb27351402799c_27375_f3bfb4881b9bbe390def5b82bad963f0.webp&#34;
                width=&#34;600&#34;
                height=&#34;390&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -327,7 +327,7 @@ Figure 4 shows the total execution time of Fib 30 with 4000 uthreads and 1,2,3,4
                /post/uthread/speedup_hud022a92908b94966ffa07b4014372a93_23527_a2a6877b3e78ece1465a1887646c9cfa.webp 400w,
                /post/uthread/speedup_hud022a92908b94966ffa07b4014372a93_23527_7d411da10e384d0611c1fc5fb501f783.webp 760w,
                /post/uthread/speedup_hud022a92908b94966ffa07b4014372a93_23527_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaogh-code.github.io/post/uthread/speedup_hud022a92908b94966ffa07b4014372a93_23527_a2a6877b3e78ece1465a1887646c9cfa.webp&#34;
+               src=&#34;https://example.com/post/uthread/speedup_hud022a92908b94966ffa07b4014372a93_23527_a2a6877b3e78ece1465a1887646c9cfa.webp&#34;
                width=&#34;600&#34;
                height=&#34;390&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -356,7 +356,7 @@ The second test is using fixed amount of workers with different number of uthrea
                /post/uthread/exe_time_huc5f0a8a855a8a650de468e811acc24b2_28942_af0a8236d561f19e30e7a97b9ec47119.webp 400w,
                /post/uthread/exe_time_huc5f0a8a855a8a650de468e811acc24b2_28942_42fc2d62fb1afef2f1b0315b321bb19a.webp 760w,
                /post/uthread/exe_time_huc5f0a8a855a8a650de468e811acc24b2_28942_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;http://yaogh-code.github.io/post/uthread/exe_time_huc5f0a8a855a8a650de468e811acc24b2_28942_af0a8236d561f19e30e7a97b9ec47119.webp&#34;
+               src=&#34;https://example.com/post/uthread/exe_time_huc5f0a8a855a8a650de468e811acc24b2_28942_af0a8236d561f19e30e7a97b9ec47119.webp&#34;
                width=&#34;600&#34;
                height=&#34;390&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
